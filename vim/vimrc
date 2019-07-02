@@ -1,0 +1,52 @@
+set nu rnu
+set hls
+syntax on
+colorscheme pablo
+set nocursorline
+
+""" NERDTree BEGIN
+autocmd vimenter * NERDTreeToggle
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+map <F9> :NERDTreeToggle<CR>
+""" NERDTree END
+
+""" netrw BEGIN
+"let g:netrw_banner = 0
+"let g:netrw_liststyle = 3
+"let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 25
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore
+"augroup END
+""" netrw END
+
+call plug#begin('~/.vim/plugged')
+	Plug 'vim-scripts/SearchComplete'
+
+	Plug 'scrooloose/nerdtree'
+	Plug 'Xuyuanp/nerdtree-git-plugin'
+	Plug 'bronson/vim-toggle-wrap'
+
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+	
+	" tpope
+	Plug 'tpope/vim-surround'
+call plug#end()
+
+if has('gui_running')
+  nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+  nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
+  
+  set guioptions-=m  "remove menu bar
+  set guioptions-=T  "remove toolbar
+
+  set guioptions-=r  "remove right-hand scroll bar
+  set guioptions-=L  "remove left-hand scroll bar
+  
+  set guifont=Monospace\ 11
+endif
+
