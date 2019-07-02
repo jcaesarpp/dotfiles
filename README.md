@@ -1,2 +1,2 @@
-# vim-config
-My vim configs
+# juliocesarpp / dotfiles
+My dotfiles...
