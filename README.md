@@ -1,2 +1,2 @@
-# juliocesarpp / dotfiles
+# dotfiles
 My dotfiles...
