@@ -1,0 +1,42 @@
+mkdir .opt
+mkdir .bin
+cd /home/jcpp/.opt/apache-tomcat-9.0.20
+cd .opt/apache-tomcat-9.0.20
+rename gdrive-linux
+find vid
+open_with libreoffice
+cd .config
+open_with geany
+cd /home/jcpp/.config/awesome/awesome-wm-widgets
+cd .fonts
+cd .fonts/
+mkdir moneda.dura
+mkdir maroon.5
+rename buena.fe
+cd ~/.config
+touch zathurarc
+open_with vim
+open_with gimp
+cd .opt
+cd .bin/
+cd .config/
+cd .opt/
+mkdir apache-tomcat
+cd /home/jcpp/.opt
+cd /home/jcpp/.opt/apache-tomcat
+mkdir xen
+cd .config/aew
+cd .config/awesome/
+delete8
+mkdir iso
+open_with 
+rename openbsd.install65.fs
+rename ols.V980739-01.iso
+rename gentoo.install-amd64-minimal-20190619T214502Z.iso
+rename alsamixer.png
+delete
+rename .dotfiles
+rename develop
+rename logbook
+cd .dotfiles/
+cd 
