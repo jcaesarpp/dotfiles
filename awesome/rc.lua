@@ -17,7 +17,6 @@ awful.spawn("audiocontrol-awm.sh")
 awful.spawn("mpd-notify.sh l")
 awful.spawn("wmname LG3D")
 awful.spawn("light -I")
-awful.spawn("mygit.sh")
 
 awful.spawn.with_shell("sleep 2 ; unagi &!")
 awful.spawn.with_shell("sleep 2 ; fehw.sh l &!")
