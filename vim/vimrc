@@ -25,6 +25,12 @@ let g:loaded_matchit = 1
 "augroup END
 """ netrw END
 
+augroup numbertoggle
+	autocmd!
+	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 call plug#begin('~/.vim/plugged')
 	Plug 'vim-scripts/SearchComplete'
 
