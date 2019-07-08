@@ -1,5 +1,7 @@
 set nu rnu
 set hls
+set ignorecase
+
 syntax on
 colorscheme pablo
 set nocursorline
