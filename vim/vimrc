@@ -27,6 +27,7 @@ let g:loaded_matchit = 1
 "augroup END
 """ netrw END
 
+" remove all trailing spaces on save
 autocmd BufWritePre *.* :%s/\s\+$//e
 
 augroup numbertoggle
