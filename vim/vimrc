@@ -27,6 +27,8 @@ let g:loaded_matchit = 1
 "augroup END
 """ netrw END
 
+autocmd BufWritePre *.* :%s/\s\+$//e
+
 augroup numbertoggle
 	autocmd!
 	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
