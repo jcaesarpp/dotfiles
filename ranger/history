@@ -5,7 +5,6 @@ cd .opt/apache-tomcat-9.0.20
 rename gdrive-linux
 find vid
 open_with libreoffice
-cd .config
 open_with geany
 cd /home/jcpp/.config/awesome/awesome-wm-widgets
 cd .fonts
@@ -38,7 +37,13 @@ rename develop
 rename logbook
 cd .dotfiles/
 cd 
-cd .config/
 cd /var/cache/apt/archives/
 find stu
+cd /media/
+cd .config
+cd .config/
+shell 
+open_with ``
+find e
+find tm
 delete

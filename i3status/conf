@@ -3,9 +3,14 @@ general {
         interval = 5
 }
 
+order += "battery all"
 order += "tztime local"
 
 tztime local {
-        format = "%Y-%m-%d %H:%M"
+        format = "%b %d, %a %H:%M"
+}
+
+battery all {
+        format = "%status %percentage %remaining"
 }
 
