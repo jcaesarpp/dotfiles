@@ -1,10 +1,27 @@
+call plug#begin('~/.vim/plugged')
+	Plug 'vim-scripts/SearchComplete'
+
+	Plug 'scrooloose/nerdtree'
+	"Plug 'Xuyuanp/nerdtree-git-plugin'
+	Plug 'bronson/vim-toggle-wrap'
+	"Plug 'andymass/vim-matchup'
+
+	"Plug 'vim-airline/vim-airline'
+	"Plug 'vim-airline/vim-airline-themes'
+	
+	Plug 'sainnhe/vim-color-lost-shrine'
+	
+	" tpope
+	Plug 'tpope/vim-surround'
+call plug#end()
+
 set nu rnu
 set hls
 set ignorecase
 
 syntax on
-colorscheme pablo
-set nocursorline
+colorscheme lost-shrine
+set cursorline
 
 """ NERDTree BEGIN
 ""autocmd vimenter * NERDTreeToggle
@@ -35,21 +52,6 @@ augroup numbertoggle
 	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
-
-call plug#begin('~/.vim/plugged')
-	Plug 'vim-scripts/SearchComplete'
-
-	Plug 'scrooloose/nerdtree'
-	"Plug 'Xuyuanp/nerdtree-git-plugin'
-	Plug 'bronson/vim-toggle-wrap'
-	"Plug 'andymass/vim-matchup'
-
-	"Plug 'vim-airline/vim-airline'
-	"Plug 'vim-airline/vim-airline-themes'
-	
-	" tpope
-	Plug 'tpope/vim-surround'
-call plug#end()
 
 if has('gui_running')
   nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
