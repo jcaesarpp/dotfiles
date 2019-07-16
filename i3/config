@@ -132,10 +132,16 @@ default_border none
 
 bindsym $mod+Control+r mode "resize"
 
+bindsym XF86AudioRaiseVolume exec audiocontrol.sh +
+bindsym XF86AudioLowerVolume exec audiocontrol.sh -
+bindsym XF86AudioMute exec audiocontrol.sh t
+
 for_window [class="Firefox"] move to workspace $ws3
 for_window [class="Zathura"] move to workspace $ws7
 
 bindsym $mod+F3 [class="Firefox"] focus
+
+assign [class="Firefox"] $ws3
 
 bindsym $mod+e exec "xterm -e ranger"
 bindsym $mod+y exec "fehw.sh"
@@ -152,7 +158,8 @@ bar {
 	position          top
 
 	colors {
-		background #3f3f3f
+		#background #3f3f3f
+		background #00000000
 		statusline #dcdccc
 	}
 }

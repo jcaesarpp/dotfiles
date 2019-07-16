@@ -5,6 +5,7 @@ general {
 
 order += "battery all"
 order += "tztime local"
+#order += "volume master"
 
 tztime local {
         format = "%b %d, %a %H:%M"
@@ -12,5 +13,13 @@ tztime local {
 
 battery all {
         format = "%status %percentage %remaining"
+}
+
+volume master {
+        format = "%volume"
+        format_muted = "Muted"
+        device = "default"
+        mixer = "Headphone"
+        mixer_idx = 0
 }
 

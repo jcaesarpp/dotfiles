@@ -1,7 +1,3 @@
-mkdir .opt
-mkdir .bin
-cd /home/jcpp/.opt/apache-tomcat-9.0.20
-cd .opt/apache-tomcat-9.0.20
 rename gdrive-linux
 find vid
 open_with libreoffice
@@ -47,3 +43,8 @@ open_with ``
 find e
 find tm
 delete
+cd .local/
+rename firefox.desktop
+shell chmod +x firefox.desktop 
+mkdir i3-axiomer
+mkdir kxrnet
