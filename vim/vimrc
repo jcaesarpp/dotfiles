@@ -13,7 +13,7 @@ set nocursorline
 map <F9> :NERDTreeToggle<CR>
 """ NERDTree END
 
-let g:loaded_matchit = 1
+"let g:loaded_matchit = 1
 
 """ netrw BEGIN
 "let g:netrw_banner = 0
@@ -40,9 +40,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-scripts/SearchComplete'
 
 	Plug 'scrooloose/nerdtree'
-	Plug 'Xuyuanp/nerdtree-git-plugin'
+	"Plug 'Xuyuanp/nerdtree-git-plugin'
 	Plug 'bronson/vim-toggle-wrap'
-	Plug 'andymass/vim-matchup'
+	"Plug 'andymass/vim-matchup'
 
 	"Plug 'vim-airline/vim-airline'
 	"Plug 'vim-airline/vim-airline-themes'
