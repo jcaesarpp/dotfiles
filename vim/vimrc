@@ -1,15 +1,12 @@
 call plug#begin('~/.vim/plugged')
 	Plug 'vim-scripts/SearchComplete'
-
 	Plug 'scrooloose/nerdtree'
-	"Plug 'Xuyuanp/nerdtree-git-plugin'
 	Plug 'bronson/vim-toggle-wrap'
-	"Plug 'andymass/vim-matchup'
 
-	"Plug 'vim-airline/vim-airline'
-	"Plug 'vim-airline/vim-airline-themes'
-	
 	Plug 'sainnhe/vim-color-lost-shrine'
+	Plug 'benburrill/potato-colors' 
+	Plug 'lithammer/vim-eighties'
+	Plug 'aonemd/kuroi.vim'
 	
 	" tpope
 	Plug 'tpope/vim-surround'
@@ -18,31 +15,20 @@ call plug#end()
 set nu rnu
 set hls
 set ignorecase
-
-syntax on
-colorscheme lost-shrine
 set cursorline
 
-""" NERDTree BEGIN
-""autocmd vimenter * NERDTreeToggle
-""autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set autoindent
+set smarttab
+
+syntax on
+colorscheme kuroi
+set background=dark
 
 map <F9> :NERDTreeToggle<CR>
-""" NERDTree END
-
-"let g:loaded_matchit = 1
-
-""" netrw BEGIN
-"let g:netrw_banner = 0
-"let g:netrw_liststyle = 3
-"let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 25
-"augroup ProjectDrawer
-"  autocmd!
-"  autocmd VimEnter * :Vexplore
-"augroup END
-""" netrw END
 
 " remove all trailing spaces on save
 autocmd BufWritePre *.* :%s/\s\+$//e

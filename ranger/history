@@ -1,4 +1,3 @@
-rename gdrive-linux
 find vid
 open_with libreoffice
 open_with geany
@@ -42,9 +41,10 @@ shell
 open_with ``
 find e
 find tm
-delete
 cd .local/
 rename firefox.desktop
 shell chmod +x firefox.desktop 
 mkdir i3-axiomer
 mkdir kxrnet
+delete
+rename background.png
