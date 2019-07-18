@@ -1,0 +1,6 @@
+set completion-ignore-case on
+set print-completions-horizontally off
+set visible-stats on
+set show-all-if-ambiguous on
+set comment-begin #
+set completion-ignore-case on
