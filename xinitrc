@@ -4,7 +4,6 @@
 setxkbmap us altgr-intl -option ctrl:nocaps
 
 #mpd
-syndaemon -i 0.25 -dK
 #xautolock -time 3 -secure -locker xtrlock.sh &
 
 exec awesome
