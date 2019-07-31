@@ -57,7 +57,8 @@ alias rm_picasa.ini='find . -iname "*picasa.ini" -type f -exec rm -fv {} \;'
 alias rm_disturb='rm_desktop.ini; rm_thumbs.db; rm_picasa.ini'
 
 DISTRO=`cat ~/.station.desc | cut -d' ' -f 3`
-case $DISTRO in:
-    ;;
+case $DISTRO in
+    Fedora ) source ~/.private/bash_aliases_yum ;;
+    Debian ) source ~/.private/bash_aliases_apt ;;
 esac
 
