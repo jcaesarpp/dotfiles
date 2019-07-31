@@ -13,10 +13,6 @@ function mranger () {
     rm -f -- "$tempfile"
 }
 
-function tomkv () {
-    for i in `ls *$@`; do ffmpeg -y -threads 4 -i "$i" `basename "$i" "$@"`mkv && rm -f "$i"; done
-}
-
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto -hF'
@@ -40,7 +36,6 @@ alias .3='cd ../../..'
 
 # general programs
 alias dleft='echo "Left $(($(date +%j -d"Dec 31")-$(date +%-j))) days to end $(date +%Y)."'
-alias ffmpeg='ffmpeg -y -threads 4'
 alias history='history | less'
 alias zip='zip -9r'
 alias vim='vim -p'
@@ -50,7 +45,6 @@ alias rsync='rsync -rvzhP'
 alias srsync='sudo rsync -rvzhP'
 alias nurl='vim ~/.newsbeuter/urls && sort ~/.newsbeuter/urls | uniq > /tmp/urls && cp /tmp/urls ~/.newsbeuter/urls'
 alias mutt='cd ~/Desktop && mutt'
-alias chromium='chromium --proxy-server=192.168.12.200:8080'
 
 alias ctest='for i in {0..255}; do printf "\x1b[38;5;${i}mcolour${i} " ; done ; echo '
 
@@ -62,29 +56,8 @@ alias rm_thumbs.db='find . -iname "thumbs.db" -type f -exec rm -fv {} \;'
 alias rm_picasa.ini='find . -iname "*picasa.ini" -type f -exec rm -fv {} \;'
 alias rm_disturb='rm_desktop.ini; rm_thumbs.db; rm_picasa.ini'
 
-alias search='aptitude search'
-alias show='aptitude show'
-
-_apt_install_complete() { 
-    mapfile -t COMPREPLY < <(apt-cache --no-generate pkgnames "$2");
-}
-
-complete -F _apt_install_complete search
-complete -F _apt_install_complete show
-
-# if user is not root, pass all commands via sudo #
-if [ $UID -ne 0 ]; then
-    #alias synaptic='sudo synaptic'
-    alias apt-get='sudo apt-get --allow-unauthenticated'
-    alias update='apt-get --fix-missing update'
-    alias upgrade='apt-get upgrade'
-    alias install='sudo apt -f install --no-install-recommends --allow-unauthenticated'
-    alias remove='apt-get remove'
-    alias purge='apt-get autoremove --purge'
-    alias clean='apt-get clean'
-    #alias systemctl='sudo systemctl'
-    alias vi='sudo vim -p'
-    
-    complete -F _apt_install_complete install
-fi
+DISTRO=`cat ~/.station.desc | cut -d' ' -f 3`
+case $DISTRO in:
+    ;;
+esac
 
