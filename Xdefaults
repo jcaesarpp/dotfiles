@@ -16,10 +16,11 @@ xterm*colorMode: on
 xterm*dynamicColors: on
 xterm*internalBorder: 0
 xterm*loginShell: true
-xterm*scrollBar: false
 xterm*cursorBlink: true
 xterm*saveLines: 4096
+xterm*scrollBar: false
 ! xterm*iconPixmap: /usr/share/icons/Faenza/apps/32/terminal.png
+xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
 
 xterm*vt100.translations: #override \n\
      Shift <Key>Home: scroll-back(1000) \n\
