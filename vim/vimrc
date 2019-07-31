@@ -2,8 +2,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-scripts/SearchComplete'
 	Plug 'scrooloose/nerdtree'
 	Plug 'bronson/vim-toggle-wrap'
-    Plug 'powerline/powerline'
+    "Plug 'powerline/powerline'
 
+    " color themes
 	Plug 'sainnhe/vim-color-lost-shrine'
 	Plug 'benburrill/potato-colors' 
 	Plug 'lithammer/vim-eighties'
@@ -11,6 +12,7 @@ call plug#begin('~/.vim/plugged')
 	
 	" tpope
 	Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-speeddating'
 call plug#end()
 
