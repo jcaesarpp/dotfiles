@@ -68,9 +68,9 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if [ -f ~/.tmux.exec ]; then
-    . ~/.tmux.exec
-fi
+#if [ -f ~/.tmux.exec ]; then
+#    . ~/.tmux.exec
+#fi
 
 # time zone data
 export TZ='America/Montevideo'
