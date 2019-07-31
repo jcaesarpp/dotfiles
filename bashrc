@@ -72,9 +72,8 @@ if [ -f ~/.tmux.exec ]; then
     . ~/.tmux.exec
 fi
 
-# export
 # time zone data
-export TZ='America/Havana'
+export TZ='America/Montevideo'
 
 # history
 export HISTCONTROL=ignoredups:erasedups:ignorespace
@@ -99,16 +98,8 @@ export AWT_TOOLKIT=MToolkit
 export MANOPT='-L es_ES'
 export PAGER='less'
 export MANWIDTH=80
-#export PYTHONSTARTUP='/home/philos/.pythonrc.py'
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 export EDITOR='vim'
 export RANGER_LOAD_DEFAULT_RC=false
-
-export http_proxy="$HTTP_PROXY"
-export rsync_proxy="$HTTP_PROXY"
-export RSYNC_PROXY="$HTTP_PROXY"
-
-# change working directory upon exit and cd to the directory
-. /usr/lib/mc/mc.sh
 

@@ -26,9 +26,3 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -x ${HOME}/.bin/start.sh ]; then
-    . "${HOME}/.bin/start.sh"
-fi
-
-TZ='America/Montevideo'; export TZ
-
