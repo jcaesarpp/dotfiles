@@ -48,11 +48,8 @@ alias rm_disturb='rm_desktop.ini; rm_thumbs.db; rm_picasa.ini'
 
 LOCAL=`cat ~/.station.desc | cut -d' ' -f 1`
 case $LOCAL in
-    Home )
-        source ~/.private/bash_aliases_yum
-    ;;
     Scanntech )
-        source ~/.private/bash_aliases_apt
+        source ~/.private/bash_aliases_scanntech
         source ~/.private/bash_functions_scanntech
     ;;
 esac
