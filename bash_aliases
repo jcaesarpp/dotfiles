@@ -49,17 +49,19 @@ alias rm_disturb='rm_desktop.ini; rm_thumbs.db; rm_picasa.ini'
 LOCAL=`cat ~/.station.desc | cut -d' ' -f 1`
 case $LOCAL in
     Scanntech )
-        source ~/.private/bash_aliases_scanntech
-        source ~/.private/bash_functions_scanntech
+        source ~/.private/aliases_scanntech.sh
+        source ~/.private/aliases_scanntech_ssh.sh
+        source ~/.private/functions_scanntech.sh
     ;;
 esac
 
 DISTRO=`cat ~/.station.desc | cut -d' ' -f 3`
 case $DISTRO in
     Fedora )
-        source ~/.private/bash_aliases_yum
+        source ~/.private/aliases_yum.sh
     ;;
     Debian )
-        source ~/.private/bash_aliases_apt
+        source ~/.private/aliases_apt.sh
     ;;
 esac
+
