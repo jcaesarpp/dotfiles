@@ -1,17 +1,7 @@
 # functions
-function md () { mkdir -p "$@" && eval cd "\"\$$#\""; }
-function hgrep () { history | grep "$@" | less; }
-function pping () { ping "$1" | xargs -n1 -i bash -c 'echo `date +%y-%m-%d\ %H:%M:%S`" {}"' | ccze; }
-
-function mranger () {
-    tempfile='/tmp/chosendir'
-    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}" $@
-    test -f "$tempfile" &&
-    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)"  ]; then
-        cd -- "$(cat "$tempfile")"
-    fi
-    rm -f -- "$tempfile"
-}
+md () { mkdir -p "$@" && eval cd "\"\$$#\""; }
+hgrep () { history | grep "$@" | less; }
+pping () { ping "$1" | xargs -n1 -i bash -c 'echo `date +%y-%m-%d\ %H:%M:%S`" {}"' | ccze; }
 
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -56,9 +46,23 @@ alias rm_thumbs.db='find . -iname "thumbs.db" -type f -exec rm -fv {} \;'
 alias rm_picasa.ini='find . -iname "*picasa.ini" -type f -exec rm -fv {} \;'
 alias rm_disturb='rm_desktop.ini; rm_thumbs.db; rm_picasa.ini'
 
-DISTRO=`cat ~/.station.desc | cut -d' ' -f 3`
-case $DISTRO in
-    Fedora ) source ~/.private/bash_aliases_yum ;;
-    Debian ) source ~/.private/bash_aliases_apt ;;
+LOCAL=`cat ~/.station.desc | cut -d' ' -f 1`
+case $LOCAL in
+    Home )
+        source ~/.private/bash_aliases_yum
+    ;;
+    Scanntech )
+        source ~/.private/bash_aliases_apt
+        source ~/.private/bash_functions_scanntech
+    ;;
 esac
 
+DISTRO=`cat ~/.station.desc | cut -d' ' -f 3`
+case $DISTRO in
+    Fedora )
+        source ~/.private/bash_aliases_yum
+    ;;
+    Debian )
+        source ~/.private/bash_aliases_apt
+    ;;
+esac
