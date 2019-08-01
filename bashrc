@@ -64,9 +64,8 @@ if ! shopt -oq posix; then
     fi
 fi
 
-if [ -f ~/.bash_aliases ]; then
+[ -f ~/.bash_aliases ] && \
     . ~/.bash_aliases
-fi
 
 #if [ -f ~/.tmux.exec ]; then
 #    . ~/.tmux.exec
