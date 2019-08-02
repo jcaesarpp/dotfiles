@@ -3,3 +3,5 @@
 	email = julio.c.pompa.puente@gmail.com
 [core]
 	excludesfile = /home/jcpp/.gitignore
+[credential]
+	helper = store
