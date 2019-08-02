@@ -41,7 +41,7 @@ if [ "$color_prompt" = yes ]; then
     PS_BROWN='\[\033[1;33m\]'
     PS_PURPLE='\[\033[1;35m\]'
     #PS1="$PS_RED[ \w ]\n$PS_CYAN\u$PS_RESET@$PS_GREEN\h$PS_RESET: "
-    PS1="${PS_CYAN}\u${PS_RESET}@${PS_GREEN}\h${PS_RESET} [ ${PS_RED}\w${PS_RESET} ]\n\$? \$(if [[ \$? == 0 ]]; then echo \"${PS_GREEN};)${PS_RESET}\"; else echo \"${PS_RED}:(${PS_RESET}\"; fi)${PS_RESET} "
+    PS1="${PS_CYAN}\u${PS_RESET}@${PS_GREEN}\h${PS_RESET} [ ${PS_CYAN}\w${PS_RESET} ]\n\$? \$(if [[ \$? == 0 ]]; then echo \"${PS_GREEN};)${PS_RESET}\"; else echo \"${PS_RED}:(${PS_RESET}\"; fi)${PS_RESET} "
 else
     #PS1='${debian_chroot:+($debian_chroot)}[ \w ]\n\u@\h: '
     PS1='\u@\h [ \w ]\n\$? \$(if [[ \$? == 0 ]]; then echo \";)\"; else echo \":(\"; fi) : '

@@ -1,3 +1,5 @@
 [user]
 	name = Julio C. Pompa Puente
 	email = julio.c.pompa.puente@gmail.com
+[core]
+	excludesfile = /home/jcpp/.gitignore
