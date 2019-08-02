@@ -64,7 +64,12 @@ if ! shopt -oq posix; then
     fi
 fi
 
-[ -f ~/.bash_aliases ] && \
+# bash_aliases read this!
+export L6N=`cat ~/.station.desc | cut -d' ' -f 1`
+export S5N=`cat ~/.station.desc | cut -d' ' -f 2`
+export D10N=`cat ~/.station.desc | cut -d' ' -f 3`
+
+[[ -f ~/.bash_aliases ]] && \
     . ~/.bash_aliases
 
 #if [ -f ~/.tmux.exec ]; then

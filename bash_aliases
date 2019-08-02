@@ -46,8 +46,7 @@ alias rm_thumbs.db='find . -iname "thumbs.db" -type f -exec rm -fv {} \;'
 alias rm_picasa.ini='find . -iname "*picasa.ini" -type f -exec rm -fv {} \;'
 alias rm_disturb='rm_desktop.ini; rm_thumbs.db; rm_picasa.ini'
 
-LOCAL=`cat ~/.station.desc | cut -d' ' -f 1`
-case $LOCAL in
+case $L6N in
     Scanntech )
         source ~/.private/aliases_scanntech.sh
         source ~/.private/aliases_scanntech_ssh.sh
@@ -55,8 +54,7 @@ case $LOCAL in
     ;;
 esac
 
-DISTRO=`cat ~/.station.desc | cut -d' ' -f 3`
-case $DISTRO in
+case $D10N in
     Fedora )
         source ~/.private/aliases_yum.sh
     ;;
