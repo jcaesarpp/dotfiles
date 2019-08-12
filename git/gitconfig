@@ -5,3 +5,5 @@
 	excludesfile = /home/jcpp/.gitignore
 [credential]
 	helper = store
+[push]
+	followTags = true
