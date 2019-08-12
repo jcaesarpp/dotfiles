@@ -1,6 +1,9 @@
 case $- in
-    *i*) ;;
-*) return;;
+    *i*)
+    ;;
+    *)
+        return
+    ;;
 esac
 
 shopt -s histappend
@@ -19,7 +22,6 @@ case "$TERM" in
 esac
 
 force_color_prompt=yes
-
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
         # We have color support; assume it's compliant with Ecma-48
@@ -51,9 +53,9 @@ unset color_prompt force_color_prompt
 case "$TERM" in
     xterm*|rxvt*)
         PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-        ;;
+    ;;
     *)
-        ;;
+    ;;
 esac
 
 if ! shopt -oq posix; then
@@ -63,6 +65,9 @@ if ! shopt -oq posix; then
         . /etc/bash_completion
     fi
 fi
+
+[[ -d ~/.local/bin ]] && \
+    PATH="${HOME}/.local/bin:${PATH}"
 
 # bash_aliases read this!
 export L6N=`cat ~/.station.desc | cut -d' ' -f 1`
