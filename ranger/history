@@ -1,5 +1,3 @@
-cd .fonts/
-mkdir moneda.dura
 mkdir maroon.5
 rename buena.fe
 cd ~/.config
@@ -38,7 +36,6 @@ shell chmod +x firefox.desktop
 mkdir i3-axiomer
 mkdir kxrnet
 rename background.png
-find tm
 mkdir iso
 mkdir 
 rename ci-front.jpeg
@@ -48,3 +45,6 @@ cd .local/
 cd .cache
 delete
 rename git
+open_with firefox
+find read
+find tm
