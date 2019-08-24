@@ -1,4 +1,3 @@
-cd /home/jcpp/.config/awesome/awesome-wm-widgets
 cd .fonts
 cd .fonts/
 mkdir moneda.dura
@@ -18,7 +17,6 @@ mkdir xen
 cd .config/aew
 cd .config/awesome/
 delete8
-open_with 
 rename openbsd.install65.fs
 rename ols.V980739-01.iso
 rename gentoo.install-amd64-minimal-20190619T214502Z.iso
@@ -36,7 +34,6 @@ cd .config/
 shell 
 open_with ``
 find e
-cd .local/
 rename firefox.desktop
 shell chmod +x firefox.desktop 
 mkdir i3-axiomer
@@ -48,3 +45,6 @@ mkdir
 delete
 rename ci-front.jpeg
 rename ci-back.jpeg
+open_with 
+cd .local/
+cd .cache
