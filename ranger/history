@@ -1,4 +1,3 @@
-touch zathurarc
 open_with vim
 open_with gimp
 cd .opt
@@ -37,14 +36,15 @@ mkdir iso
 mkdir 
 rename ci-front.jpeg
 rename ci-back.jpeg
-open_with 
 cd .local/
 cd .cache
 rename git
 open_with firefox
 find read
 find tm
-delete
 rename opt
 cd .loca
 cd .local
+open_with 
+rename despinosa.reserva.pdf
+delete

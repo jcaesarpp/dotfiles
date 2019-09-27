@@ -4,6 +4,6 @@
 [core]
 	excludesfile = /home/jcpp/.gitignore
 [credential]
-	helper = store
+	helper = store --file /home/jcpp/.private/git.auth
 [push]
 	followTags = true

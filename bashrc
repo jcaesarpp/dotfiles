@@ -112,17 +112,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export EDITOR='vim'
 export RANGER_LOAD_DEFAULT_RC=false
 
-
 PATH="/home/jcpp/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/jcpp/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/jcpp/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/jcpp/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/jcpp/perl5"; export PERL_MM_OPT;
-
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
 
