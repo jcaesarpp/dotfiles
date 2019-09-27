@@ -1,6 +1,3 @@
-" VIM CONFIGURATION FILE
-" Julio C. Pompa Puente <julio.c.pompa.puente@gmail.com>
-
 call plug#begin('~/.vim/plugged')
 	Plug 'vim-scripts/SearchComplete'
 	Plug 'scrooloose/nerdtree'
