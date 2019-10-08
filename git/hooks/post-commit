@@ -1,4 +1,4 @@
 #!/bin/bash
 
-git push github
+git push github master
 
