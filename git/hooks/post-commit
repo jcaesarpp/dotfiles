@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo $L6N
-echo $S5N
-echo $D10N
-#git push github master
+[[ $L6N = 'Scanntech' ]] && git push scanntech
+git push github master
 
