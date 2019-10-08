@@ -1,0 +1,12 @@
+#!/bin/bash
+# Julio C. Pompa Puente <julio.c.pompa.puente@gmail.com>
+
+if [[ $L6N = 'Scanntech' ]]; then
+    git remote | grep -qi scanntech
+    [[ $? -eq 0 ]] && \
+        git pull scanntech master && \
+            exit 0
+fi
+
+git pull github master
+
