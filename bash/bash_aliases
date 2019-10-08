@@ -48,7 +48,9 @@ alias rm_disturb='rm_desktop.ini; rm_thumbs.db; rm_picasa.ini'
 
 case $L6N in
     Scanntech )
-        source ~/.private/scanntech/*.sh
+        source ~/.private/scanntech/aliases_scanntech.sh
+        source ~/.private/scanntech/aliases_scanntech_ssh.sh
+        source ~/.private/scanntech/functions_scanntech.sh
     ;;
 esac
 
