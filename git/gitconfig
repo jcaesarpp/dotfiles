@@ -10,4 +10,4 @@
 	followTags = true
 
 [alias]
-	coa = !git pull && git add -A && git commit -m
+	coa = !git add -A && git commit -am
