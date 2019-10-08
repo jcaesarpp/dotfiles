@@ -1,5 +1,6 @@
 #!/bin/bash
+# Julio C. Pompa Puente <julio.c.pompa.puente@gmail.com>
 
-[[ $L6N = 'Scanntech' ]] && git push scanntech
+[[ $L6N = 'Scanntech' ]] && git push scanntech master
 git push github master
 
