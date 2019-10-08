@@ -2,8 +2,9 @@
 	name = Julio C. Pompa Puente
 	email = julio.c.pompa.puente@gmail.com
 [core]
-	excludesfile = /home/jcpp/.gitignore
+	excludesfile = /home/jcpp/.dotfiles/git/gitignore
 [credential]
-	helper = store --file /home/jcpp/.private/git.auth
+	helper = store --file /home/jcpp/.private/git-credentials
 [push]
 	followTags = true
+

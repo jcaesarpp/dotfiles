@@ -126,3 +126,15 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
+function upload_ftp_mc () {
+    ftp -nvp <<EOF
+        open 192.168.1.68
+        user salud uno1122dos
+        bin
+        prompt
+        cd logs/microservicios
+        put "$1"
+    bye
+EOF
+}
+
