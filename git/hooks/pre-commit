@@ -3,9 +3,13 @@
 
 if [[ $L6N = 'Scanntech' ]]; then
     git remote | grep -qi scanntech
-    [[ $? -eq 0 ]] && \
+    if [[ $? -eq 0 ]]; then
+        GIT_REPO_NAME=`git remote -v | head -n 1 | rev | cut -d/ -f1 | rev | cut -d. -f1`
+        [[ $GIT_REPO_NAME = 'notas' ]] && \
+            git reset --hard scanntech/master
         git pull scanntech master && \
             exit 0
+    fi
 fi
 
 git pull github master
