@@ -56,7 +56,7 @@ esac
 
 case $D10N in
     Fedora )
-        source ~/.private/aliases_yum.sh
+        source ~/.private/aliases_dnf.sh
     ;;
     Debian )
         source ~/.private/aliases_apt.sh
