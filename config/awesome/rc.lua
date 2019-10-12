@@ -51,6 +51,10 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
+local home = os.getenv("HOME")
+beautiful.init(home .. "/.config/awesome/themes/zenburn.jcpp/theme.lua")
+local current_user = 'jcpp'
+
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "editor"
