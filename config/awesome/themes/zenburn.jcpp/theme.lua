@@ -56,7 +56,7 @@ theme.social      = icons .. "social.svg"
 theme.develop      = icons .. "develop.svg"
 theme.read      = icons .. "read.svg"
 
-theme.layout_fairv      = layouts .. 'fairv.png'
+theme.layout_tile       = layouts .. 'tile.png'
 theme.layout_floating   = layouts .. 'floating.png'
 
 theme.clock = icons .. 'clock.svg'

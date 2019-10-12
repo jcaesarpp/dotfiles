@@ -33,7 +33,7 @@ alias df='df -lhPT --total'
 alias x='cd; startx &! logout'
 alias rsync='rsync -rvzhP'
 alias srsync='sudo rsync -rvzhP'
-alias nurl='vim ~/.newsbeuter/urls && sort ~/.newsbeuter/urls | uniq > /tmp/urls && cp /tmp/urls ~/.newsbeuter/urls'
+alias nurl='vim ~/.newsboat/urls && sort ~/.newsboat/urls | uniq > /tmp/newsboat.urls && mv /tmp/newsboat.urls ~/.newsboat/urls'
 alias mutt='cd ~/Desktop && mutt'
 
 alias ctest='for i in {0..255}; do printf "\x1b[38;5;${i}mcolour${i} " ; done ; echo '
