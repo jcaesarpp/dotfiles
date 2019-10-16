@@ -4,8 +4,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'bronson/vim-toggle-wrap'
     "Plug 'powerline/powerline'
     Plug 'airblade/vim-gitgutter'
-    Plug 'jreybert/vimagit'
-    "Plug 'chrisbra/csv.vim'
 
     " color themes
 	Plug 'sainnhe/vim-color-lost-shrine'
