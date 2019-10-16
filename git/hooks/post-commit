@@ -1,11 +1,13 @@
 #!/bin/bash
 # Julio C. Pompa Puente <julio.c.pompa.puente@gmail.com>
 
+git remote | grep -qi github
+[[ $? -eq 0 ]] && \
+    git push github master
+
 if [[ $L6N = 'Scanntech' ]]; then
     git remote | grep -qi scanntech
     [[ $? -eq 0 ]] && \
         git push scanntech master
 fi
-
-git push github master
 

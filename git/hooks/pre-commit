@@ -12,5 +12,7 @@ if [[ $L6N = 'Scanntech' ]]; then
     fi
 fi
 
-git pull github master
+git remote | grep -qi github
+[[ $? -eq 0 ]] && \
+    git pull github master
 
