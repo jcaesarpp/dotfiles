@@ -4,8 +4,9 @@
 if [[ $L6N = 'Scanntech' ]]; then
     git remote | grep -qi scanntech
     if [[ $? -eq 0 ]]; then
-        GIT_REPO_NAME=`git remote -v | grep scanntech | head -n 1 | rev | cut -d/ -f1 | rev | cut -d' ' -f1`
-        [[ $GIT_REPO_NAME = 'logbook-scanntech' ]] && \
+        GIT_REPO_NAME=`git remote -v | grep -m 1 -E '^scanntech' | \
+            rev | cut -d/ -f1 | rev`
+        [[ $GIT_REPO_NAME = 'notas.git' ]] && \
             git reset --hard scanntech/master
         git pull scanntech master && \
             exit 0
