@@ -1,13 +1,17 @@
 [user]
 	name = Julio C. Pompa Puente
 	email = julio.c.pompa.puente@gmail.com
+
 [core]
-	excludesfile = /home/jcpp/.dotfiles/git/gitignore
+	excludesfile = ~/.dotfiles/git/gitignore
 	hooksPath = ~/.dotfiles/git/hooks
+
 [credential]
-	helper = store --file /home/jcpp/.private/git-credentials
+	helper = store --file ~/.private/git-credentials
+
 [push]
 	followTags = true
 
 [alias]
 	coa = !git add -A && git commit -am
+
