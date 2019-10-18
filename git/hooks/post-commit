@@ -5,6 +5,7 @@ git remote | grep -qi github
 [[ $? -eq 0 ]] && \
     git push github master
 
+echo '* * * LLEGO AQUI * * *'
 if [[ $L6N = 'Scanntech' ]]; then
     git remote | grep -qi scanntech
     [[ $? -eq 0 ]] && \
