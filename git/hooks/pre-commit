@@ -4,7 +4,7 @@
 FLAG_CONTINUE=1
 
 if [[ $L6N = 'Scanntech' ]]; then
-    git remote -vv | grep -qi scanntech
+    git remote -vv | grep -i fetch | grep -qi scanntech
     if [[ $? -eq 0 ]]; then
         GIT_REPO_NAME=`git remote -v | grep -m 1 -E '^scanntech' | \
             rev | cut -d/ -f1 | rev | cut -d' ' -f1`
@@ -16,7 +16,7 @@ if [[ $L6N = 'Scanntech' ]]; then
 fi
 
 if [[ $FLAG_CONTINUE -eq 1 ]]; then
-    git remote -vv | grep -qi github
+    git remote -vv | grep -i fetch | grep -qi github
     [[ $? -eq 0 ]] && \
         git pull github master
 fi
