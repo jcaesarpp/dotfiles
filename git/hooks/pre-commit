@@ -1,19 +1,23 @@
 #!/bin/bash
 # Julio C. Pompa Puente <julio.c.pompa.puente@gmail.com>
 
+FLAG_CONTINUE=1
+
 if [[ $L6N = 'Scanntech' ]]; then
-    git remote | grep -qi scanntech
+    git remote -vv | grep -qi scanntech
     if [[ $? -eq 0 ]]; then
         GIT_REPO_NAME=`git remote -v | grep -m 1 -E '^scanntech' | \
             rev | cut -d/ -f1 | rev | cut -d' ' -f1`
         [[ $GIT_REPO_NAME = 'notas' ]] && \
             git reset --hard scanntech/master
         git pull scanntech master && \
-            exit 0
+            FLAG_CONTINUE=0
     fi
 fi
 
-git remote | grep -qi github
-[[ $? -eq 0 ]] && \
-    git pull github master
+if [[ $FLAG_CONTINUE -eq 1 ]]; then
+    git remote -vv | grep -qi github
+    [[ $? -eq 0 ]] && \
+        git pull github master
+fi
 
