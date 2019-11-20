@@ -11,19 +11,23 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
-local naughty = require("naughty")
+naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- Load Debian menu entries
-local debian = require("debian.menu")
-local has_fdo, freedesktop = pcall(require, "freedesktop")
+local vicious = require("vicious")
+
+awful.spawn('brightness-awm.sh')
 
 awful.spawn.with_shell("sleep 2 ; unagi &!")
 awful.spawn.with_shell("sleep 2 ; fehw.sh l &!")
+
+-- Load Debian menu entries
+local debian = require("debian.menu")
+local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -52,11 +56,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-
-local home = os.getenv("HOME")
-beautiful.init(home .. "/.config/awesome/themes/zenburn.jcpp/theme.lua")
-local current_user = 'jcpp'
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/jc/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -74,20 +74,20 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    --awful.layout.suit.tile.left,
-    --awful.layout.suit.tile.bottom,
-    --awful.layout.suit.tile.top,
-    --awful.layout.suit.fair,
-    --awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.spiral,
-    --awful.layout.suit.spiral.dwindle,
-    --awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.magnifier,
-    --awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
+    awful.layout.suit.fair,
+    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.spiral,
+    awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.max,
+    awful.layout.suit.max.fullscreen,
+    awful.layout.suit.magnifier,
+    awful.layout.suit.corner.nw,
+    awful.layout.suit.corner.ne,
+    awful.layout.suit.corner.sw,
+    awful.layout.suit.corner.se,
 }
 -- }}}
 
@@ -119,7 +119,6 @@ else
     })
 end
 
-
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
@@ -132,7 +131,46 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock('%R')
+mytextclock = wibox.widget.textclock('date { %R }')
+
+widget_volume = wibox.widget.textbox()
+vicious.register(widget_volume, vicious.widgets.volume, 'vol { $1 }', 61, "Master")
+
+wifiwidget = wibox.widget.textbox()
+vicious.register(wifiwidget, vicious.widgets.wifi, 'wifi { ${ssid} ${linp} }', 61, "wlp2s0")
+
+uptimewidget = wibox.widget.textbox()
+vicious.register(uptimewidget, vicious.widgets.uptime, 'uptime { $1 $2 $3 $4 $5 $6 }', 61, "wlp2s0")
+
+weatherwidget = wibox.widget.textbox()
+-- Carrasco Uruguay
+vicious.register(weatherwidget, vicious.widgets.weather, 'weather { ${city} ${tempc} ${humid} }', 3601, "SUMU")
+
+--batwidget = wibox.widget.progressbar()
+-- Create wibox with batwidget
+--batbox = wibox.layout.margin(
+--    wibox.widget{{max_value = 1, widget = batwidget,
+--                  border_width = 0.5, border_color = "#000000",
+--                  color = {type = "linear",
+--                           from = {0, 0},
+--                           to = {0, 30},
+--                           stops = {{0, "#AECF96"}, {1, "#FF5656"}}}},
+--                 forced_height = 10, forced_width = 8,
+--                 direction = 'east', color = beautiful.fg_widget,
+--                 layout = wibox.container.rotate},
+--    1, 1, 3, 3)
+
+batwidget = wibox.widget.textbox()
+-- Register battery widget
+vicious.register(batwidget, vicious.widgets.bat, "bat { $1 $2 }", 61, "BAT0")
+
+memwidget = wibox.widget.textbox()
+vicious.register(memwidget, vicious.widgets.mem, "mem { $1 }", 11)
+
+cpuwidget = wibox.widget.textbox()
+vicious.register(cpuwidget, vicious.widgets.cpu, "cpu { $1 }", 11)
+
+w_brightness = wibox.widget.textbox()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -194,7 +232,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "f", "a", "w", "n", "c", "d", "r" }, s, awful.layout.layouts[1])
+    awful.tag({ "f", "e", "w", "n", "c", "d", "r", "v", "m" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -228,8 +266,8 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            s.mylayoutbox,
             --mylauncher,
+            s.mylayoutbox,
             s.mytaglist,
             s.mypromptbox,
         },
@@ -238,6 +276,15 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             --mykeyboardlayout,
             wibox.widget.systray(),
+            batwidget,
+            cpuwidget,
+            memwidget,
+            w_brightness,
+            --w_battery,
+            widget_volume,
+            wifiwidget,
+            uptimewidget,
+            weatherwidget,
             mytextclock,
         },
     }
@@ -354,13 +401,21 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- custom
+    awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell('audiocontrol-awm.sh +') end,
+              {description = "Volume Up", group = "volume"}),
+    awful.key({ }, "XF86AudioLowerVolume", function() awful.spawn.with_shell('audiocontrol-awm.sh -') end,
+              {description = "Volume Down", group = "volume"}),
+    awful.key({ }, "XF86AudioMute", function() awful.spawn.with_shell('audiocontrol-awm.sh t') end,
+              {description = "Volume Toggle", group = "volume"}),
 
-    awful.key({ }, "XF86AudioMute", function() awful.spawn('audiocontrol.sh t') end,
-              {description = "toggle mute", group = "volume"}),
-    awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn('audiocontrol.sh +') end,
-              {description = "raise volume", group = "volume"}),
-    awful.key({ }, "XF86AudioLowerVolume", function() awful.spawn('audiocontrol.sh -') end,
-              {description = "lower volume", group = "volume"})
+    awful.key({ }, "XF86MonBrightnessUp", function() awful.spawn.with_shell('brightness-awm.sh +') end,
+              {description = "Brightness Up", group = "brightness"}),
+    awful.key({ }, "XF86MonBrightnessDown", function() awful.spawn.with_shell('brightness-awm.sh -') end,
+              {description = "Brightness Down", group = "brightness"}),
+    awful.key({ "Control" }, "XF86MonBrightnessUp", function() awful.spawn.with_shell('brightness-awm.sh m') end,
+              {description = "Brightness Max", group = "brightness"}),
+    awful.key({ "Control" }, "XF86MonBrightnessDown", function() awful.spawn.with_shell('brightness-awm.sh h') end,
+              {description = "Brightness Half", group = "brightness"})
 )
 
 clientkeys = gears.table.join(
@@ -529,13 +584,11 @@ awful.rules.rules = {
 
     { rule = { class = "UXTerm" }, properties = { opacity = 0.95 } },
     { rule = { class = "XTerm" }, properties = { opacity = 0.95 } },
-    { rule = { class = "explorer" }, properties = { floating = true, opacity = 0.95 } },
-    --{ rule = { class = "explorer" }, properties = { tag = "f", floating = true, opacity = 0.95 } },
+    { rule = { class = "Firefox" }, properties = { tag = "w" } },
+    { rule = { class = "Zathura" }, properties = { tag = "r" } },
+    { rule = { class = "Spotify" }, properties = { tag = "m" } },
+    { rule = { class = "explorer" }, properties = { tag = "f", floating = true, opacity = 0.95 } },
     { rule = { class = "screensaver" }, properties = { opacity = 0.5 } },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
 }
 -- }}}
 
@@ -602,3 +655,4 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
