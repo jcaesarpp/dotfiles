@@ -1,10 +1,10 @@
-d:/home/jcpp/store/documents
-':/media/store/documents/logbook
-w:/home/jcpp/store/develop
+d:/media/store/documents
+':/home/jcpp/Virtualizations
+w:/media/store/develop
 e:/home/jcpp/Desktop
 n:/home/jcpp/store/downloads
 g:/home/jcpp/store/gnulinux
-l:/home/jcpp/store/logbook
+l:/media/store/documents/logbook
 m:/home/jcpp/store/music
 i:/home/jcpp/store/pictures
 p:/home/jcpp/store/public
@@ -14,3 +14,4 @@ v:/home/jcpp/store/videos
 o:/home/jcpp/store/opt
 c:/home/jcpp/store/virtualizations
 q:/home/jcpp/store/workspaces
+h:/media/store/downloads
