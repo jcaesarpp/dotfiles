@@ -29,6 +29,8 @@ awful.spawn.with_shell("sleep 2 ; fehw.sh l &!")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
+local screensaver = 'xterm -fullscreen -class screensaver -e asciiquarium'
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -407,6 +409,9 @@ globalkeys = gears.table.join(
               {description = "Volume Down", group = "volume"}),
     awful.key({ }, "XF86AudioMute", function() awful.spawn.with_shell('audiocontrol-awm.sh t') end,
               {description = "Volume Toggle", group = "volume"}),
+
+    awful.key({ modkey }, "Pause", function() awful.spawn(screensaver) end,
+              {description = "Screensaver", group = "screensaver"}),
 
     awful.key({ }, "XF86MonBrightnessUp", function() awful.spawn.with_shell('brightness-awm.sh +') end,
               {description = "Brightness Up", group = "brightness"}),
