@@ -134,7 +134,11 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- Create a textclock widget
 widget_textclock = wibox.widget.textclock('%R')
-widget_textclock_icon = wibox.widget { image = beautiful.widget_textclock_image, resize = true, widget = wibox.widget.imagebox }
+widget_textclock_icon = wibox.widget {
+    image = beautiful.widget_textclock_image,
+    resize = true,
+    widget = wibox.widget.imagebox
+}
 
 widget_volume = wibox.widget.textbox()
 vicious.register(widget_volume, vicious.widgets.volume, 'vol { $1 }', 61, "Master")
