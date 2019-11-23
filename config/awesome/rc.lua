@@ -133,7 +133,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock('date { %R }')
+widget_textclock = wibox.widget.textclock('%R')
+widget_textclock_icon = wibox.widget { image = beautiful.widget_textclock_image, resize = true, widget = wibox.widget.imagebox }
 
 widget_volume = wibox.widget.textbox()
 vicious.register(widget_volume, vicious.widgets.volume, 'vol { $1 }', 61, "Master")
@@ -147,20 +148,6 @@ vicious.register(uptimewidget, vicious.widgets.uptime, 'uptime { $1 $2 $3 $4 $5 
 weatherwidget = wibox.widget.textbox()
 -- Carrasco Uruguay
 vicious.register(weatherwidget, vicious.widgets.weather, 'weather { ${city} ${tempc} ${humid} }', 3601, "SUMU")
-
---batwidget = wibox.widget.progressbar()
--- Create wibox with batwidget
---batbox = wibox.layout.margin(
---    wibox.widget{{max_value = 1, widget = batwidget,
---                  border_width = 0.5, border_color = "#000000",
---                  color = {type = "linear",
---                           from = {0, 0},
---                           to = {0, 30},
---                           stops = {{0, "#AECF96"}, {1, "#FF5656"}}}},
---                 forced_height = 10, forced_width = 8,
---                 direction = 'east', color = beautiful.fg_widget,
---                 layout = wibox.container.rotate},
---    1, 1, 3, 3)
 
 batwidget = wibox.widget.textbox()
 -- Register battery widget
@@ -287,7 +274,8 @@ awful.screen.connect_for_each_screen(function(s)
             wifiwidget,
             uptimewidget,
             weatherwidget,
-            mytextclock,
+            widget_textclock_icon,
+            widget_textclock,
         },
     }
 end)
