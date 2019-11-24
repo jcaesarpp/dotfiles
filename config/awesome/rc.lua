@@ -168,7 +168,7 @@ vicious.register(widget_battery_value, vicious.widgets.bat, "bat { $2 }", 61, "B
 widget_battery_image = wibox.widget.imagebox()
 widget_battery_image.image = beautiful.battery_100
 local function update_battery()
-    battery_value = tonumber(widget_battery_value.text)
+    battery_value = tonumber(widget_battery_value.gettext())
     battery_image = beautiful.battery_000
 
     if battery_value < 20 then
