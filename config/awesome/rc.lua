@@ -132,13 +132,12 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 --mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
--- Create a textclock widget
-widget_textclock = wibox.widget.textclock('%R')
-widget_textclock_icon = wibox.widget {
-    image = beautiful.clock,
-    resize = true,
-    widget = wibox.widget.imagebox
-}
+widget_clock = wibox.widget.textclock('%R')
+widget_clock_icon = wibox.widget.imagebox(beautiful.clock)
+widget_clock_tooltip = awful.tooltip({
+    objects = { widget_clock, widget_clock_icon },
+	timer_function = function() return os.date("%A %d, %B %Y") end,
+})
 
 widget_volume = wibox.widget.textbox()
 vicious.register(widget_volume, vicious.widgets.volume, "$1", 61, "Master")
@@ -146,63 +145,39 @@ vicious.register(widget_volume, vicious.widgets.volume, "$1", 61, "Master")
 widget_volume_status = wibox.widget.textbox()
 vicious.register(widget_volume_status, vicious.widgets.volume, "$2", 61, "Master")
 
-widget_volume_image = wibox.widget.imagebox()
+widget_volume_icon = wibox.widget.imagebox()
 widget_volume_tooltip = awful.tooltip({
-    objects = { widget_volume_image },
-	timer_function = function()
-        return widget_volume.text end,
-    })
-
+    objects = { widget_volume_icon },
+	timer_function = function() return widget_volume.text end,
+})
 local function update_volume()
+    vicious.force({ widget_volume, widget_volume_status })
     volume_value = tonumber(widget_volume.text)
-    volume_image = beautiful.volume_
+    volume_image = beautiful.volume_off
 
-    if volume_value < 10 then
-        if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_000_charging
-        else
-            battery_image = beautiful.battery_000
-        end
-    elseif battery_value < 30 then
-        if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_020_charging
-        else
-            battery_image = beautiful.battery_020
-        end
-    elseif battery_value < 50 then
-        if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_040_charging
-        else
-            battery_image = beautiful.battery_040
-        end
-    elseif battery_value < 70 then
-        if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_060_charging
-        else
-            battery_image = beautiful.battery_060
-        end
-    elseif battery_value < 90 then
-        if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_080_charging
-        else
-            battery_image = beautiful.battery_080
-        end
-        battery_image = beautiful.battery_080
+    if volume_value > 100 then
+        awful.spawn.with_shell('pactl set-sink-volume 0 100%')
+        vicious.force({ widget_volume, widget_volume_status })
+        volume_value = tonumber(widget_volume.text)
+    end
+
+    if widget_volume_status.text == "♩" then
+        volume_image = beautiful.volume_muted
     else
-        if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_100_charging
-        elseif widget_battery_status.text == '-' then
-            battery_image = beautiful.battery_100
+        if volume_value <= 25 then
+            volume_image = beautiful.volume_off
+        elseif volume_value <= 45 then
+            volume_image = beautiful.volume_low
+        elseif volume_value <= 75 then
+            volume_image = beautiful.volume_medium
         else
-            battery_image = beautiful.battery_100_charged
+            volume_image = beautiful.volume_high
         end
     end
 
-    widget_battery_image.image = battery_image
+    widget_volume_icon.image = volume_image
 end
-widget_battery_watch = awful.widget.watch(update_battery(), 61)
-
-
+widget_volume_watch = awful.widget.watch(update_volume(), 61)
 
 wifiwidget = wibox.widget.textbox()
 vicious.register(wifiwidget, vicious.widgets.wifi, 'wifi { ${ssid} ${linp} }', 61, "wlp2s0")
@@ -220,12 +195,11 @@ vicious.register(widget_battery_status, vicious.widgets.bat, "$1", 61, "BAT0")
 widget_battery_value = wibox.widget.textbox()
 vicious.register(widget_battery_value, vicious.widgets.bat, "$2", 61, "BAT0")
 
-widget_battery_image = wibox.widget.imagebox()
+widget_battery_icon = wibox.widget.imagebox()
 widget_battery_tooltip = awful.tooltip({
-    objects = { widget_battery_image },
-	timer_function = function()
-        return widget_battery_status.text .. widget_battery_value.text end,
-    })
+    objects = { widget_battery_icon },
+	timer_function = function() return widget_battery_status.text .. widget_battery_value.text end,
+})
 
 local function update_battery()
     battery_value = tonumber(widget_battery_value.text)
@@ -261,7 +235,6 @@ local function update_battery()
         else
             battery_image = beautiful.battery_080
         end
-        battery_image = beautiful.battery_080
     else
         if widget_battery_status.text == '+' then
             battery_image = beautiful.battery_100_charging
@@ -272,7 +245,7 @@ local function update_battery()
         end
     end
 
-    widget_battery_image.image = battery_image
+    widget_battery_icon.image = battery_image
 end
 widget_battery_watch = awful.widget.watch(update_battery(), 61)
 
@@ -394,12 +367,10 @@ awful.screen.connect_for_each_screen(function(s)
             wifiwidget,
             uptimewidget,
             weatherwidget,
-            widget_textclock_icon,
-            widget_textclock,
-            widget_battery_image,
-            widget_volume_image,
-            widget_volume,
-            widget_volume_status,
+            widget_clock_icon,
+            widget_clock,
+            widget_battery_icon,
+            widget_volume_icon,
         },
     }
 end)
@@ -515,12 +486,21 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- custom keys
-    awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell('audiocontrol-awm.sh +') end,
-              {description = "Volume Up", group = "volume"}),
-    awful.key({ }, "XF86AudioLowerVolume", function() awful.spawn.with_shell('audiocontrol-awm.sh -') end,
-              {description = "Volume Down", group = "volume"}),
-    awful.key({ }, "XF86AudioMute", function() awful.spawn.with_shell('audiocontrol-awm.sh t') end,
-              {description = "Volume Toggle", group = "volume"}),
+    awful.key({ }, "XF86AudioRaiseVolume",
+        function()
+            awful.spawn.with_shell('pactl set-sink-volume 0 +5%')
+            update_volume()
+        end, {description = "Volume Up", group = "volume"}),
+    awful.key({ }, "XF86AudioLowerVolume",
+        function()
+            awful.spawn.with_shell('pactl set-sink-volume 0 -5%')
+            update_volume()
+        end, {description = "Volume Down", group = "volume"}),
+    awful.key({ }, "XF86AudioMute",
+        function()
+            awful.spawn.with_shell('pactl set-sink-mute 0 toggle')
+            update_volume()
+        end, {description = "Volume Toggle", group = "volume"}),
 
     awful.key({ modkey }, "Pause", function() awful.spawn(screensaver) end,
               {description = "Screensaver", group = "screensaver"}),
