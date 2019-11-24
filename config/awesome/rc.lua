@@ -141,13 +141,68 @@ widget_textclock_icon = wibox.widget {
 }
 
 widget_volume = wibox.widget.textbox()
-vicious.register(widget_volume, vicious.widgets.volume, 'vol { $1 }', 61, "Master")
+vicious.register(widget_volume, vicious.widgets.volume, "$1", 61, "Master")
 
-widget_volume_img = wibox.widget {
-    image = beautiful.volume_off,
-    resize = true,
-    widget = wibox.widget.imagebox
-}
+widget_volume_status = wibox.widget.textbox()
+vicious.register(widget_volume_status, vicious.widgets.volume, "$2", 61, "Master")
+
+widget_volume_image = wibox.widget.imagebox()
+widget_volume_tooltip = awful.tooltip({
+    objects = { widget_volume_image },
+	timer_function = function()
+        return widget_volume.text end,
+    })
+
+local function update_volume()
+    volume_value = tonumber(widget_volume.text)
+    volume_image = beautiful.volume_
+
+    if volume_value < 10 then
+        if widget_battery_status.text == '+' then
+            battery_image = beautiful.battery_000_charging
+        else
+            battery_image = beautiful.battery_000
+        end
+    elseif battery_value < 30 then
+        if widget_battery_status.text == '+' then
+            battery_image = beautiful.battery_020_charging
+        else
+            battery_image = beautiful.battery_020
+        end
+    elseif battery_value < 50 then
+        if widget_battery_status.text == '+' then
+            battery_image = beautiful.battery_040_charging
+        else
+            battery_image = beautiful.battery_040
+        end
+    elseif battery_value < 70 then
+        if widget_battery_status.text == '+' then
+            battery_image = beautiful.battery_060_charging
+        else
+            battery_image = beautiful.battery_060
+        end
+    elseif battery_value < 90 then
+        if widget_battery_status.text == '+' then
+            battery_image = beautiful.battery_080_charging
+        else
+            battery_image = beautiful.battery_080
+        end
+        battery_image = beautiful.battery_080
+    else
+        if widget_battery_status.text == '+' then
+            battery_image = beautiful.battery_100_charging
+        elseif widget_battery_status.text == '-' then
+            battery_image = beautiful.battery_100
+        else
+            battery_image = beautiful.battery_100_charged
+        end
+    end
+
+    widget_battery_image.image = battery_image
+end
+widget_battery_watch = awful.widget.watch(update_battery(), 61)
+
+
 
 wifiwidget = wibox.widget.textbox()
 vicious.register(wifiwidget, vicious.widgets.wifi, 'wifi { ${ssid} ${linp} }', 61, "wlp2s0")
@@ -166,8 +221,12 @@ widget_battery_value = wibox.widget.textbox()
 vicious.register(widget_battery_value, vicious.widgets.bat, "$2", 61, "BAT0")
 
 widget_battery_image = wibox.widget.imagebox()
-widget_battery_tooltip = awful.tooltip({ objects = { widget_battery_image },
-	timer_function = function() return widget_battery_status.text .. widget_battery_value.text .. '%' end, })
+widget_battery_tooltip = awful.tooltip({
+    objects = { widget_battery_image },
+	timer_function = function()
+        return widget_battery_status.text .. widget_battery_value.text end,
+    })
+
 local function update_battery()
     battery_value = tonumber(widget_battery_value.text)
     battery_image = beautiful.battery_000
@@ -338,8 +397,9 @@ awful.screen.connect_for_each_screen(function(s)
             widget_textclock_icon,
             widget_textclock,
             widget_battery_image,
-            widget_volume_img,
+            widget_volume_image,
             widget_volume,
+            widget_volume_status,
         },
     }
 end)
