@@ -9,7 +9,7 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 -- Theme handling library
-local beautiful = require("beautiful")
+beautiful = require("beautiful")
 -- Notification library
 naughty = require("naughty")
 local menubar = require("menubar")
@@ -30,6 +30,10 @@ local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 local screensaver = 'xterm -fullscreen -class screensaver -e asciiquarium'
+
+local function update_battery()
+
+end
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -135,13 +139,18 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget
 widget_textclock = wibox.widget.textclock('%R')
 widget_textclock_icon = wibox.widget {
-    image = beautiful.widget_textclock_image,
+    image = beautiful.clock,
     resize = true,
     widget = wibox.widget.imagebox
 }
 
 widget_volume = wibox.widget.textbox()
 vicious.register(widget_volume, vicious.widgets.volume, 'vol { $1 }', 61, "Master")
+widget_volume_img = wibox.widget {
+    image = beautiful.volume_off,
+    resize = true,
+    widget = wibox.widget.imagebox
+}
 
 wifiwidget = wibox.widget.textbox()
 vicious.register(wifiwidget, vicious.widgets.wifi, 'wifi { ${ssid} ${linp} }', 61, "wlp2s0")
@@ -153,9 +162,10 @@ weatherwidget = wibox.widget.textbox()
 -- Carrasco Uruguay
 vicious.register(weatherwidget, vicious.widgets.weather, 'weather { ${city} ${tempc} ${humid} }', 3601, "SUMU")
 
-batwidget = wibox.widget.textbox()
--- Register battery widget
-vicious.register(batwidget, vicious.widgets.bat, "bat { $1 $2 }", 61, "BAT0")
+widget_battery_status = wibox.widget.textbox()
+vicious.register(widget_battery_status, vicious.widgets.bat, "bat { $1 }", 61, "BAT0")
+widget_battery_value = wibox.widget.textbox()
+vicious.register(widget_battery_value, vicious.widgets.bat, "bat { $2 }", 61, "BAT0")
 
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, "mem { $1 }", 11)
@@ -269,17 +279,18 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             --mykeyboardlayout,
             wibox.widget.systray(),
-            batwidget,
+            widget_battery_status,
+            widget_battery_value,
             cpuwidget,
             memwidget,
             w_brightness,
-            --w_battery,
-            widget_volume,
             wifiwidget,
             uptimewidget,
             weatherwidget,
             widget_textclock_icon,
             widget_textclock,
+            widget_volume_img,
+            widget_volume,
         },
     }
 end)
@@ -394,7 +405,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
-    -- custom
+    -- custom keys
     awful.key({ }, "XF86AudioRaiseVolume", function() awful.spawn.with_shell('audiocontrol-awm.sh +') end,
               {description = "Volume Up", group = "volume"}),
     awful.key({ }, "XF86AudioLowerVolume", function() awful.spawn.with_shell('audiocontrol-awm.sh -') end,

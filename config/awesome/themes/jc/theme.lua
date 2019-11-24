@@ -130,7 +130,14 @@ theme.titlebar_maximized_button_normal_active = themes_path .. "zenburn/titlebar
 theme.titlebar_maximized_button_focus_inactive  = themes_path .. "zenburn/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = themes_path .. "zenburn/titlebar/maximized_normal_inactive.png"
 
-theme.widget_textclock_image = "/home/jcpp/.config/awesome/themes/jc/icons/clock.svg"
+--
+theme.clock = "/home/jcpp/.config/awesome/themes/jc/icons/clock.svg"
+
+theme.volume_muted = "/home/jcpp/.config/awesome/themes/jc/icons/volume_muted.png"
+theme.volume_off = "/home/jcpp/.config/awesome/themes/jc/icons/volume_off.png"
+theme.volume_low = "/home/jcpp/.config/awesome/themes/jc/icons/volume_low.png"
+theme.volume_medium = "/home/jcpp/.config/awesome/themes/jc/icons/volume_medium.png"
+theme.volume_high = "/home/jcpp/.config/awesome/themes/jc/icons/volume_high.png"
 -- }}}
 -- }}}
 
