@@ -138,6 +138,22 @@ theme.volume_off = "/home/jcpp/.config/awesome/themes/jc/icons/volume_off.png"
 theme.volume_low = "/home/jcpp/.config/awesome/themes/jc/icons/volume_low.png"
 theme.volume_medium = "/home/jcpp/.config/awesome/themes/jc/icons/volume_medium.png"
 theme.volume_high = "/home/jcpp/.config/awesome/themes/jc/icons/volume_high.png"
+
+theme.battery_000 = "/home/jcpp/.config/awesome/themes/jc/icons/battery_000.png"
+theme.battery_020 = "/home/jcpp/.config/awesome/themes/jc/icons/battery_020.png"
+theme.battery_040 = "/home/jcpp/.config/awesome/themes/jc/icons/battery_040.png"
+theme.battery_060 = "/home/jcpp/.config/awesome/themes/jc/icons/battery_060.png"
+theme.battery_080 = "/home/jcpp/.config/awesome/themes/jc/icons/battery_080.png"
+theme.battery_100 = "/home/jcpp/.config/awesome/themes/jc/icons/battery_100.png"
+
+theme.battery_000_charging = "/home/jcpp/.config/awesome/themes/jc/icons/battery_000_charging.png"
+theme.battery_020_charging = "/home/jcpp/.config/awesome/themes/jc/icons/battery_020_charging.png"
+theme.battery_040_charging = "/home/jcpp/.config/awesome/themes/jc/icons/battery_040_charging.png"
+theme.battery_060_charging = "/home/jcpp/.config/awesome/themes/jc/icons/battery_060_charging.png"
+theme.battery_080_charging = "/home/jcpp/.config/awesome/themes/jc/icons/battery_080_charging.png"
+theme.battery_100_charging = "/home/jcpp/.config/awesome/themes/jc/icons/battery_100_charging.png"
+
+theme.battery_100_charged = "/home/jcpp/.config/awesome/themes/jc/icons/battery_100_charged.png"
 -- }}}
 -- }}}
 

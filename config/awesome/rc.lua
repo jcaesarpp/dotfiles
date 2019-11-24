@@ -9,7 +9,7 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 -- Theme handling library
-beautiful = require("beautiful")
+local beautiful = require("beautiful")
 -- Notification library
 naughty = require("naughty")
 local menubar = require("menubar")
@@ -30,10 +30,6 @@ local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 local screensaver = 'xterm -fullscreen -class screensaver -e asciiquarium'
-
-local function update_battery()
-
-end
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -146,6 +142,7 @@ widget_textclock_icon = wibox.widget {
 
 widget_volume = wibox.widget.textbox()
 vicious.register(widget_volume, vicious.widgets.volume, 'vol { $1 }', 61, "Master")
+
 widget_volume_img = wibox.widget {
     image = beautiful.volume_off,
     resize = true,
@@ -164,8 +161,33 @@ vicious.register(weatherwidget, vicious.widgets.weather, 'weather { ${city} ${te
 
 widget_battery_status = wibox.widget.textbox()
 vicious.register(widget_battery_status, vicious.widgets.bat, "bat { $1 }", 61, "BAT0")
+
 widget_battery_value = wibox.widget.textbox()
 vicious.register(widget_battery_value, vicious.widgets.bat, "bat { $2 }", 61, "BAT0")
+
+widget_battery_image = wibox.widget.imagebox()
+widget_battery_image.image = beautiful.battery_100
+local function update_battery()
+    battery_value = tonumber(widget_battery_value.text)
+    battery_image = beautiful.battery_000
+
+    if battery_value < 20 then
+        battery_image = beautiful.battery_000
+--    else if battery_value < 40 then
+--        battery_image = beautiful.battery_020
+--    else if battery_value < 60 then
+--        battery_image = beautiful.battery_040
+--    else if battery_value < 80 then
+--        battery_image = beautiful.battery_060
+--    else if battery_value < 100 then
+--        battery_image = beautiful.battery_080
+--    else
+--        battery_image = beautiful.battery_100
+    end
+
+    widget_battery_image.image = battery_image
+end
+--update_battery()
 
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, "mem { $1 }", 11)
@@ -289,6 +311,7 @@ awful.screen.connect_for_each_screen(function(s)
             weatherwidget,
             widget_textclock_icon,
             widget_textclock,
+            widget_battery_image,
             widget_volume_img,
             widget_volume,
         },
