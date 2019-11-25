@@ -153,7 +153,7 @@ widget_volume_tooltip = awful.tooltip({
 local function update_volume()
     vicious.force({ widget_volume, widget_volume_status })
     volume_value = tonumber(widget_volume.text)
-    volume_image = beautiful.volume_off
+    volume_icon = beautiful.volume_off
 
     if volume_value > 100 then
         awful.spawn.with_shell('pactl set-sink-volume 0 100%')
@@ -162,25 +162,71 @@ local function update_volume()
     end
 
     if widget_volume_status.text == "♩" then
-        volume_image = beautiful.volume_muted
+        volume_icon = beautiful.volume_muted
     else
         if volume_value <= 25 then
-            volume_image = beautiful.volume_off
+            volume_icon = beautiful.volume_off
         elseif volume_value <= 45 then
-            volume_image = beautiful.volume_low
+            volume_icon = beautiful.volume_low
         elseif volume_value <= 75 then
-            volume_image = beautiful.volume_medium
+            volume_icon = beautiful.volume_medium
         else
-            volume_image = beautiful.volume_high
+            volume_icon = beautiful.volume_high
         end
     end
 
-    widget_volume_icon.image = volume_image
+    widget_volume_icon.image = volume_icon
 end
 widget_volume_watch = awful.widget.watch(update_volume(), 61)
 
-wifiwidget = wibox.widget.textbox()
-vicious.register(wifiwidget, vicious.widgets.wifi, 'wifi { ${ssid} ${linp} }', 61, "wlp2s0")
+local function change_volume(action)
+    if action == '*' then
+        awful.spawn('pactl set-sink-mute 0 toggle')
+    else
+        awful.spawn('pactl set-sink-mute 0 0')
+        if action == '+' then
+            awful.spawn('pactl set-sink-volume 0 +5%')
+        elseif action == '-' then
+            awful.spawn('pactl set-sink-volume 0 -5%')
+        end
+    end
+    update_volume()
+end
+
+widget_wireless_ssid = wibox.widget.textbox()
+vicious.register(widget_wireless_ssid, vicious.widgets.wifi, '${ssid}', 61, "wlp2s0")
+
+widget_wireless_linp = wibox.widget.textbox()
+vicious.register(widget_wireless_linp, vicious.widgets.wifi, '${linp}', 61, "wlp2s0")
+
+widget_wireless_icon = wibox.widget.imagebox()
+widget_wireless_tooltip = awful.tooltip({
+    objects = { widget_wireless_icon },
+	timer_function = function() return widget_wireless_ssid.text .. ' - ' .. widget_wireless_linp.text end,
+})
+local function update_wireless()
+    vicious.force({ widget_wireless_ssid, widget_wireless_linp })
+    wireless_linp = tonumber(widget_wireless_linp.text)
+
+    if widget_wireless_ssid.text == "N/A" then
+        wireless_icon = beautiful.wireless_disconnected
+    else
+        if wireless_linp < 5 then
+            wireless_icon = beautiful.wireless_none
+        elseif wireless_linp < 35 then
+            wireless_icon = beautiful.wireless_low
+        elseif wireless_linp < 65 then
+            wireless_icon = beautiful.wireless_medium
+        elseif wireless_linp < 95 then
+            wireless_icon = beautiful.wireless_high
+        else
+            wireless_icon = beautiful.wireless_full
+        end
+    end
+
+    widget_wireless_icon.image = wireless_icon
+end
+widget_wireless_watch = awful.widget.watch(update_wireless(), 61)
 
 uptimewidget = wibox.widget.textbox()
 vicious.register(uptimewidget, vicious.widgets.uptime, 'uptime { $1 $2 $3 $4 $5 $6 }', 61, "wlp2s0")
@@ -203,49 +249,49 @@ widget_battery_tooltip = awful.tooltip({
 
 local function update_battery()
     battery_value = tonumber(widget_battery_value.text)
-    battery_image = beautiful.battery_000
+    battery_icon = beautiful.battery_000
 
     if battery_value < 10 then
         if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_000_charging
+            battery_icon = beautiful.battery_000_charging
         else
-            battery_image = beautiful.battery_000
+            battery_icon = beautiful.battery_000
         end
     elseif battery_value < 30 then
         if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_020_charging
+            battery_icon = beautiful.battery_020_charging
         else
-            battery_image = beautiful.battery_020
+            battery_icon = beautiful.battery_020
         end
     elseif battery_value < 50 then
         if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_040_charging
+            battery_icon = beautiful.battery_040_charging
         else
-            battery_image = beautiful.battery_040
+            battery_icon = beautiful.battery_040
         end
     elseif battery_value < 70 then
         if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_060_charging
+            battery_icon = beautiful.battery_060_charging
         else
-            battery_image = beautiful.battery_060
+            battery_icon = beautiful.battery_060
         end
     elseif battery_value < 90 then
         if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_080_charging
+            battery_icon = beautiful.battery_080_charging
         else
-            battery_image = beautiful.battery_080
+            battery_icon = beautiful.battery_080
         end
     else
         if widget_battery_status.text == '+' then
-            battery_image = beautiful.battery_100_charging
+            battery_icon = beautiful.battery_100_charging
         elseif widget_battery_status.text == '-' then
-            battery_image = beautiful.battery_100
+            battery_icon = beautiful.battery_100
         else
-            battery_image = beautiful.battery_100_charged
+            battery_icon = beautiful.battery_100_charged
         end
     end
 
-    widget_battery_icon.image = battery_image
+    widget_battery_icon.image = battery_icon
 end
 widget_battery_watch = awful.widget.watch(update_battery(), 61)
 
@@ -364,9 +410,9 @@ awful.screen.connect_for_each_screen(function(s)
             cpuwidget,
             memwidget,
             w_brightness,
-            wifiwidget,
             uptimewidget,
             weatherwidget,
+            widget_wireless_icon,
             widget_clock_icon,
             widget_clock,
             widget_battery_icon,
@@ -486,21 +532,12 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- custom keys
-    awful.key({ }, "XF86AudioRaiseVolume",
-        function()
-            awful.spawn.with_shell('pactl set-sink-volume 0 +5%')
-            update_volume()
-        end, {description = "Volume Up", group = "volume"}),
-    awful.key({ }, "XF86AudioLowerVolume",
-        function()
-            awful.spawn.with_shell('pactl set-sink-volume 0 -5%')
-            update_volume()
-        end, {description = "Volume Down", group = "volume"}),
-    awful.key({ }, "XF86AudioMute",
-        function()
-            awful.spawn.with_shell('pactl set-sink-mute 0 toggle')
-            update_volume()
-        end, {description = "Volume Toggle", group = "volume"}),
+    awful.key({ }, "XF86AudioRaiseVolume", function() change_volume('+') end,
+        {description = "Volume Up", group = "volume"}),
+    awful.key({ }, "XF86AudioLowerVolume", function() change_volume('-') end,
+        {description = "Volume Down", group = "volume"}),
+    awful.key({ }, "XF86AudioMute", function() change_volume('*') end,
+        {description = "Volume Toggle", group = "volume"}),
 
     awful.key({ modkey }, "Pause", function() awful.spawn(screensaver) end,
               {description = "Screensaver", group = "screensaver"}),

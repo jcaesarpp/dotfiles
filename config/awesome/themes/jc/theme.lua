@@ -154,6 +154,13 @@ theme.battery_080_charging = "/home/jcpp/.config/awesome/themes/jc/icons/battery
 theme.battery_100_charging = "/home/jcpp/.config/awesome/themes/jc/icons/battery_100_charging.png"
 
 theme.battery_100_charged = "/home/jcpp/.config/awesome/themes/jc/icons/battery_100_charged.png"
+
+theme.wireless_disconnected = "/home/jcpp/.config/awesome/themes/jc/icons/wireless_disconnected.png"
+theme.wireless_none = "/home/jcpp/.config/awesome/themes/jc/icons/wireless_none.png"
+theme.wireless_low = "/home/jcpp/.config/awesome/themes/jc/icons/wireless_low.png"
+theme.wireless_medium = "/home/jcpp/.config/awesome/themes/jc/icons/wireless_medium.png"
+theme.wireless_high = "/home/jcpp/.config/awesome/themes/jc/icons/wireless_high.png"
+theme.wireless_full = "/home/jcpp/.config/awesome/themes/jc/icons/wireless_full.png"
 -- }}}
 -- }}}
 
