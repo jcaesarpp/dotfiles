@@ -27,8 +27,6 @@ awful.spawn.with_shell("sleep 2 ; fehw.sh l &!")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
-local screensaver = 'xterm -fullscreen -class screensaver -e asciiquarium'
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -62,6 +60,11 @@ beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/jc/theme.lua"
 terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
+
+local current_user = 'jcpp'
+local screensaver = terminal .. ' -fullscreen -class screensaver -e asciiquarium'
+local explorer = terminal .. ' -title explorer -class explorer -e ranger'
+local taskmanager = terminal .. ' -fullscreen -title taskmanager -e htop -u ' .. current_user
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -126,15 +129,14 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
---mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- {{{ Wibar
 widget_clock = wibox.widget.textclock('%R')
 widget_clock_icon = wibox.widget.imagebox(beautiful.clock)
 widget_clock_tooltip = awful.tooltip({
     objects = { widget_clock, widget_clock_icon },
-	timer_function = function() return os.date("%A %d, %B %Y") end,
+	timer_function = function()
+        return os.date("%A %d, %B %Y") .. '\nUptime: ' .. widget_uptime.text
+    end,
 })
 
 widget_volume = wibox.widget.textbox()
@@ -146,7 +148,9 @@ vicious.register(widget_volume_status, vicious.widgets.volume, "$2", 61, "Master
 widget_volume_icon = wibox.widget.imagebox()
 widget_volume_tooltip = awful.tooltip({
     objects = { widget_volume_icon },
-	timer_function = function() return widget_volume.text end,
+	timer_function = function()
+        return 'Volume: ' .. widget_volume.text
+    end,
 })
 local function update_volume()
     vicious.force({ widget_volume, widget_volume_status })
@@ -200,7 +204,9 @@ vicious.register(widget_wireless_linp, vicious.widgets.wifi, '${linp}', 61, "wlp
 widget_wireless_icon = wibox.widget.imagebox()
 widget_wireless_tooltip = awful.tooltip({
     objects = { widget_wireless_icon },
-	timer_function = function() return widget_wireless_ssid.text .. ' - ' .. widget_wireless_linp.text end,
+	timer_function = function()
+        return  'Wireless: ' .. widget_wireless_linp.text .. '\n' .. widget_wireless_ssid.text
+    end,
 })
 local function update_wireless()
     vicious.force({ widget_wireless_ssid, widget_wireless_linp })
@@ -226,8 +232,11 @@ local function update_wireless()
 end
 widget_wireless_watch = awful.widget.watch(update_wireless(), 61)
 
-uptimewidget = wibox.widget.textbox()
-vicious.register(uptimewidget, vicious.widgets.uptime, 'uptime { $1 $2 $3 $4 $5 $6 }', 61, "wlp2s0")
+widget_uptime = wibox.widget.textbox()
+vicious.register(widget_uptime, vicious.widgets.uptime, '$1 $2 $3', 61)
+
+widget_uptime_load = wibox.widget.textbox()
+vicious.register(widget_uptime_load, vicious.widgets.uptime, '$4 $5 $6', 61)
 
 weatherwidget = wibox.widget.textbox()
 -- Carrasco Uruguay
@@ -235,19 +244,33 @@ vicious.register(weatherwidget, vicious.widgets.weather, 'weather { ${city} ${te
 
 widget_battery_status = wibox.widget.textbox()
 vicious.register(widget_battery_status, vicious.widgets.bat, "$1", 61, "BAT0")
+widget_battery_status_text = ''
 
 widget_battery_value = wibox.widget.textbox()
 vicious.register(widget_battery_value, vicious.widgets.bat, "$2", 61, "BAT0")
 
+widget_battery_remaining = wibox.widget.textbox()
+vicious.register(widget_battery_remaining, vicious.widgets.bat, "$3", 61, "BAT0")
+
 widget_battery_icon = wibox.widget.imagebox()
 widget_battery_tooltip = awful.tooltip({
     objects = { widget_battery_icon },
-	timer_function = function() return widget_battery_status.text .. widget_battery_value.text end,
+	timer_function = function()
+        return widget_battery_status_text .. ': ' .. widget_battery_value.text .. '\nRemaining: ' .. widget_battery_remaining.text
+    end,
 })
 
 local function update_battery()
     battery_value = tonumber(widget_battery_value.text)
     battery_icon = beautiful.battery_000
+
+    if widget_battery_status.text == '+' then
+        widget_battery_status_text = 'Charging'
+    elseif widget_battery_status.text == '-' then
+        widget_battery_status_text = 'Discharging'
+    else
+        widget_battery_status_text = 'Charged'
+    end
 
     if battery_value < 10 then
         if widget_battery_status.text == '+' then
@@ -299,17 +322,17 @@ vicious.register(memwidget, vicious.widgets.mem, "mem { $1 }", 11)
 cpuwidget = wibox.widget.textbox()
 vicious.register(cpuwidget, vicious.widgets.cpu, "cpu { $1 }", 11)
 
-widget_brightness = wibox.widget.textbox('0')
 widget_brightness_icon = wibox.widget.imagebox(beautiful.brightness)
 widget_brightness_icon_level = wibox.widget.imagebox()
 
 widget_brightness_tooltip = awful.tooltip({
     objects = { widget_brightness_icon, widget_brightness_icon_level },
-	timer_function = function() return widget_brightness.text end,
+	timer_function = function()
+        return 'Brightness: ' .. io.popen('printf "%.0f" `xbacklight -get`'):read("*all")
+    end,
 })
 local function update_brightness()
-    widget_brightness.text = io.popen('printf "%.0f" `xbacklight -get`'):read("*all")
-    brightness_value = tonumber(widget_brightness.text)
+    brightness_value = tonumber(io.popen('sleep 1; printf "%.0f" `xbacklight -get`'):read("*all"))
 
     if brightness_value < 10 then
         brightness_icon_level = beautiful.brightness_010
@@ -456,11 +479,9 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            --mykeyboardlayout,
             wibox.widget.systray(),
             cpuwidget,
             memwidget,
-            uptimewidget,
             weatherwidget,
             widget_brightness_icon,
             widget_brightness_icon_level,
@@ -584,6 +605,11 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- custom keys
+    awful.key({ "Control", "Shift" }, "Escape", function () awful.spawn(taskmanager) end,
+        {description = "Taskmanager", group = "taskmanager"}),
+    awful.key({ modkey }, "e", function () awful.spawn(explorer) end,
+        {description = "Explorer", group = "explorer"}),
+
     awful.key({ }, "XF86AudioRaiseVolume", function() change_volume('+') end,
         {description = "Volume Up", group = "volume"}),
     awful.key({ }, "XF86AudioLowerVolume", function() change_volume('-') end,
