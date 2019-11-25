@@ -161,6 +161,18 @@ theme.wireless_low = "/home/jcpp/.config/awesome/themes/jc/icons/wireless_low.pn
 theme.wireless_medium = "/home/jcpp/.config/awesome/themes/jc/icons/wireless_medium.png"
 theme.wireless_high = "/home/jcpp/.config/awesome/themes/jc/icons/wireless_high.png"
 theme.wireless_full = "/home/jcpp/.config/awesome/themes/jc/icons/wireless_full.png"
+
+theme.brightness = "/home/jcpp/.config/awesome/themes/jc/icons/brightness.png"
+theme.brightness_010 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_010.png"
+theme.brightness_020 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_020.png"
+theme.brightness_030 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_030.png"
+theme.brightness_040 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_040.png"
+theme.brightness_050 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_050.png"
+theme.brightness_060 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_060.png"
+theme.brightness_070 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_070.png"
+theme.brightness_080 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_080.png"
+theme.brightness_090 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_090.png"
+theme.brightness_100 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_100.png"
 -- }}}
 -- }}}
 

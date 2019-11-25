@@ -20,8 +20,6 @@ require("awful.hotkeys_popup.keys")
 
 local vicious = require("vicious")
 
-awful.spawn('brightness-awm.sh')
-
 awful.spawn.with_shell("sleep 2 ; unagi &!")
 awful.spawn.with_shell("sleep 2 ; fehw.sh l &!")
 
@@ -301,7 +299,60 @@ vicious.register(memwidget, vicious.widgets.mem, "mem { $1 }", 11)
 cpuwidget = wibox.widget.textbox()
 vicious.register(cpuwidget, vicious.widgets.cpu, "cpu { $1 }", 11)
 
-w_brightness = wibox.widget.textbox()
+widget_brightness = wibox.widget.textbox('0')
+widget_brightness_icon = wibox.widget.imagebox(beautiful.brightness)
+widget_brightness_icon_level = wibox.widget.imagebox()
+
+widget_brightness_tooltip = awful.tooltip({
+    objects = { widget_brightness_icon, widget_brightness_icon_level },
+	timer_function = function() return widget_brightness.text end,
+})
+local function update_brightness()
+    widget_brightness.text = io.popen('printf "%.0f" `xbacklight -get`'):read("*all")
+    brightness_value = tonumber(widget_brightness.text)
+
+    if brightness_value < 10 then
+        brightness_icon_level = beautiful.brightness_010
+    elseif brightness_value < 20 then
+        brightness_icon_level = beautiful.brightness_020
+    elseif brightness_value < 30 then
+        brightness_icon_level = beautiful.brightness_030
+    elseif brightness_value < 40 then
+        brightness_icon_level = beautiful.brightness_040
+    elseif brightness_value < 50 then
+        brightness_icon_level = beautiful.brightness_050
+    elseif brightness_value < 60 then
+        brightness_icon_level = beautiful.brightness_060
+    elseif brightness_value < 70 then
+        brightness_icon_level = beautiful.brightness_070
+    elseif brightness_value < 80 then
+        brightness_icon_level = beautiful.brightness_080
+    elseif brightness_value < 90 then
+        brightness_icon_level = beautiful.brightness_090
+    else
+        brightness_icon_level = beautiful.brightness_100
+    end
+
+    widget_brightness_icon_level.image = brightness_icon_level
+end
+widget_brightness_watch = awful.widget.watch(update_brightness(), 61)
+
+local function change_brightness(value)
+    if value == 'f' then
+        awful.spawn('xbacklight =100')
+    elseif value == 't' then
+        awful.spawn('xbacklight =75')
+    elseif value == 'q' then
+        awful.spawn('xbacklight =25')
+    elseif value == 'm' then
+        awful.spawn('xbacklight =50')
+    elseif value == '+' then
+        awful.spawn('xbacklight +5')
+    elseif value == '-' then
+        awful.spawn('xbacklight -5')
+    end
+    update_brightness()
+end
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -409,9 +460,10 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             cpuwidget,
             memwidget,
-            w_brightness,
             uptimewidget,
             weatherwidget,
+            widget_brightness_icon,
+            widget_brightness_icon_level,
             widget_wireless_icon,
             widget_clock_icon,
             widget_clock,
@@ -542,14 +594,18 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "Pause", function() awful.spawn(screensaver) end,
               {description = "Screensaver", group = "screensaver"}),
 
-    awful.key({ }, "XF86MonBrightnessUp", function() awful.spawn.with_shell('brightness-awm.sh +') end,
+    awful.key({ }, "XF86MonBrightnessUp", function() change_brightness('+') end,
               {description = "Brightness Up", group = "brightness"}),
-    awful.key({ }, "XF86MonBrightnessDown", function() awful.spawn.with_shell('brightness-awm.sh -') end,
+    awful.key({ "Control" }, "XF86MonBrightnessUp", function() change_brightness('f') end,
+              {description = "Brightness Full", group = "brightness"}),
+    awful.key({ "Shift" }, "XF86MonBrightnessUp", function() change_brightness('t') end,
+              {description = "Brightness T", group = "brightness"}),
+    awful.key({ }, "XF86MonBrightnessDown", function() change_brightness('-') end,
               {description = "Brightness Down", group = "brightness"}),
-    awful.key({ "Control" }, "XF86MonBrightnessUp", function() awful.spawn.with_shell('brightness-awm.sh m') end,
-              {description = "Brightness Max", group = "brightness"}),
-    awful.key({ "Control" }, "XF86MonBrightnessDown", function() awful.spawn.with_shell('brightness-awm.sh h') end,
-              {description = "Brightness Half", group = "brightness"})
+    awful.key({ "Control" }, "XF86MonBrightnessDown", function() change_brightness('m') end,
+              {description = "Brightness Medium", group = "brightness"}),
+    awful.key({ "Shift" }, "XF86MonBrightnessDown", function() change_brightness('q') end,
+              {description = "Brightness Q", group = "brightness"})
 )
 
 clientkeys = gears.table.join(
