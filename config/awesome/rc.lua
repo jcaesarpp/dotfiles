@@ -11,7 +11,7 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
-naughty = require("naughty")
+local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
@@ -152,7 +152,7 @@ widget_volume_tooltip = awful.tooltip({
         return 'Volume: ' .. widget_volume.text
     end,
 })
-local function update_volume()
+function update_volume()
     vicious.force({ widget_volume, widget_volume_status })
     volume_value = tonumber(widget_volume.text)
     volume_icon = beautiful.volume_off
@@ -179,7 +179,7 @@ local function update_volume()
 
     widget_volume_icon.image = volume_icon
 end
-widget_volume_watch = awful.widget.watch(update_volume(), 61)
+widget_volume_watch = awful.widget.watch('', 61, update_volume())
 
 local function change_volume(action)
     if action == '*' then
