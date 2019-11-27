@@ -327,11 +327,15 @@ function updateBattery()
 end
 awful.widget.watch("awesome-client 'updateBattery()'", 16)
 
-memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, "mem { $1 }", 11)
+widget_ram = wibox.widget.textbox()
+vicious.register(widget_ram, vicious.widgets.mem, "$1", 11)
 
-cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, "cpu { $1 }", 11)
+widget_ram_icon = wibox.widget.imagebox(beautiful.ram)
+
+widget_cpu = wibox.widget.textbox()
+vicious.register(widget_cpu, vicious.widgets.cpu, "$1", 11)
+
+widget_cpu_icon = wibox.widget.imagebox(beautiful.cpu)
 
 widget_brightness_icon = wibox.widget.imagebox(beautiful.brightness)
 widget_brightness_icon_level = wibox.widget.imagebox()
@@ -491,8 +495,10 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            cpuwidget,
-            memwidget,
+            widget_cpu_icon,
+            widget_cpu,
+            widget_ram_icon,
+            widget_ram,
             weatherwidget,
             widget_brightness_icon,
             widget_brightness_icon_level,

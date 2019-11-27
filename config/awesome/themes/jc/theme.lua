@@ -173,6 +173,9 @@ theme.brightness_070 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_070.pn
 theme.brightness_080 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_080.png"
 theme.brightness_090 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_090.png"
 theme.brightness_100 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_100.png"
+
+theme.cpu = "/home/jcpp/.config/awesome/themes/jc/icons/cpu.png"
+theme.ram = "/home/jcpp/.config/awesome/themes/jc/icons/ram.png"
 -- }}}
 -- }}}
 
