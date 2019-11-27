@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ -f ~/.Xdefaults ]] && xrdb -merge .Xdefaults
+[ -f ~/.Xdefaults ] && xrdb -merge ~/.Xdefaults
 setxkbmap us altgr-intl -option ctrl:nocaps
 
 #autocutsel &

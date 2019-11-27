@@ -62,9 +62,10 @@ editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
 local current_user = 'jcpp'
-local screensaver = terminal .. ' -fullscreen -class screensaver -e asciiquarium'
-local explorer = terminal .. ' -title explorer -class explorer -e ranger'
-local taskmanager = terminal .. ' -fullscreen -title taskmanager -e htop -u ' .. current_user
+local screensaver = terminal .. '-fullscreen -class screensaver -e asciiquarium'
+local explorer = terminal .. '-title explorer -class explorer -e ranger'
+local taskmanager = terminal .. '-fullscreen -title taskmanager -e htop -u ' .. current_user
+local audiocontrol = terminal .. '-title audiocontrol -class audiocontrol -e alsamixer -c 1 -V all'
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -152,7 +153,7 @@ widget_volume_tooltip = awful.tooltip({
         return 'Volume: ' .. widget_volume.text
     end,
 })
-local function update_volume()
+function updateVolume()
     vicious.force({ widget_volume, widget_volume_status })
     volume_value = tonumber(widget_volume.text)
     volume_icon = beautiful.volume_off
@@ -179,9 +180,9 @@ local function update_volume()
 
     widget_volume_icon.image = volume_icon
 end
-widget_volume_watch = awful.widget.watch(update_volume(), 61)
+awful.widget.watch("awesome-client 'updateVolume()'", 16)
 
-local function change_volume(action)
+local function changeVolume(action)
     if action == '*' then
         awful.spawn('pactl set-sink-mute 0 toggle')
     else
@@ -192,7 +193,7 @@ local function change_volume(action)
             awful.spawn('pactl set-sink-volume 0 -5%')
         end
     end
-    update_volume()
+    updateVolume()
 end
 
 widget_wireless_ssid = wibox.widget.textbox()
@@ -208,7 +209,7 @@ widget_wireless_tooltip = awful.tooltip({
         return  'Wireless: ' .. widget_wireless_linp.text .. '\n' .. widget_wireless_ssid.text
     end,
 })
-local function update_wireless()
+function updateWireless()
     vicious.force({ widget_wireless_ssid, widget_wireless_linp })
     wireless_linp = tonumber(widget_wireless_linp.text)
 
@@ -230,7 +231,7 @@ local function update_wireless()
 
     widget_wireless_icon.image = wireless_icon
 end
-widget_wireless_watch = awful.widget.watch(update_wireless(), 61)
+awful.widget.watch("awesome-client 'updateWireless()'", 16)
 
 widget_uptime = wibox.widget.textbox()
 vicious.register(widget_uptime, vicious.widgets.uptime, '$1 $2 $3', 61)
@@ -240,7 +241,7 @@ vicious.register(widget_uptime_load, vicious.widgets.uptime, '$4 $5 $6', 61)
 
 weatherwidget = wibox.widget.textbox()
 -- Carrasco Uruguay
-vicious.register(weatherwidget, vicious.widgets.weather, 'weather { ${city} ${tempc} ${humid} }', 3601, "SUMU")
+vicious.register(weatherwidget, vicious.widgets.weather, 'weather { ${city} ${tempc} ${humid} }', 900, "SUMU")
 
 widget_battery_status = wibox.widget.textbox()
 vicious.register(widget_battery_status, vicious.widgets.bat, "$1", 61, "BAT0")
@@ -260,7 +261,7 @@ widget_battery_tooltip = awful.tooltip({
     end,
 })
 
-local function update_battery()
+function updateBattery()
     battery_value = tonumber(widget_battery_value.text)
     battery_icon = beautiful.battery_000
 
@@ -314,7 +315,7 @@ local function update_battery()
 
     widget_battery_icon.image = battery_icon
 end
-widget_battery_watch = awful.widget.watch(update_battery(), 61)
+awful.widget.watch("awesome-client 'updateBattery()'", 16)
 
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, "mem { $1 }", 11)
@@ -331,7 +332,7 @@ widget_brightness_tooltip = awful.tooltip({
         return 'Brightness: ' .. io.popen('printf "%.0f" `xbacklight -get`'):read("*all")
     end,
 })
-local function update_brightness()
+function updateBrightness()
     brightness_value = tonumber(io.popen('sleep 1; printf "%.0f" `xbacklight -get`'):read("*all"))
 
     if brightness_value < 10 then
@@ -358,9 +359,9 @@ local function update_brightness()
 
     widget_brightness_icon_level.image = brightness_icon_level
 end
-widget_brightness_watch = awful.widget.watch(update_brightness(), 61)
+awful.widget.watch("awesome-client 'updateBrightness()'", 16)
 
-local function change_brightness(value)
+local function changeBrightness(value)
     if value == 'f' then
         awful.spawn('xbacklight =100')
     elseif value == 't' then
@@ -374,7 +375,7 @@ local function change_brightness(value)
     elseif value == '-' then
         awful.spawn('xbacklight -5')
     end
-    update_brightness()
+    updateBrightness()
 end
 
 -- Create a wibox for each screen and add it
@@ -610,27 +611,27 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "e", function () awful.spawn(explorer) end,
         {description = "Explorer", group = "explorer"}),
 
-    awful.key({ }, "XF86AudioRaiseVolume", function() change_volume('+') end,
+    awful.key({ }, "XF86AudioRaiseVolume", function() changeVolume('+') end,
         {description = "Volume Up", group = "volume"}),
-    awful.key({ }, "XF86AudioLowerVolume", function() change_volume('-') end,
+    awful.key({ }, "XF86AudioLowerVolume", function() changeVolume('-') end,
         {description = "Volume Down", group = "volume"}),
-    awful.key({ }, "XF86AudioMute", function() change_volume('*') end,
+    awful.key({ }, "XF86AudioMute", function() changeVolume('*') end,
         {description = "Volume Toggle", group = "volume"}),
 
     awful.key({ modkey }, "Pause", function() awful.spawn(screensaver) end,
               {description = "Screensaver", group = "screensaver"}),
 
-    awful.key({ }, "XF86MonBrightnessUp", function() change_brightness('+') end,
+    awful.key({ }, "XF86MonBrightnessUp", function() changeBrightness('+') end,
               {description = "Brightness Up", group = "brightness"}),
-    awful.key({ "Control" }, "XF86MonBrightnessUp", function() change_brightness('f') end,
+    awful.key({ "Control" }, "XF86MonBrightnessUp", function() changeBrightness('f') end,
               {description = "Brightness Full", group = "brightness"}),
-    awful.key({ "Shift" }, "XF86MonBrightnessUp", function() change_brightness('t') end,
+    awful.key({ "Shift" }, "XF86MonBrightnessUp", function() changeBrightness('t') end,
               {description = "Brightness T", group = "brightness"}),
-    awful.key({ }, "XF86MonBrightnessDown", function() change_brightness('-') end,
+    awful.key({ }, "XF86MonBrightnessDown", function() changeBrightness('-') end,
               {description = "Brightness Down", group = "brightness"}),
-    awful.key({ "Control" }, "XF86MonBrightnessDown", function() change_brightness('m') end,
+    awful.key({ "Control" }, "XF86MonBrightnessDown", function() changeBrightness('m') end,
               {description = "Brightness Medium", group = "brightness"}),
-    awful.key({ "Shift" }, "XF86MonBrightnessDown", function() change_brightness('q') end,
+    awful.key({ "Shift" }, "XF86MonBrightnessDown", function() changeBrightness('q') end,
               {description = "Brightness Q", group = "brightness"})
 )
 
