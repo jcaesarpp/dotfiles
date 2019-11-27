@@ -62,10 +62,11 @@ editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
 local current_user = 'jcpp'
-local screensaver = terminal .. '-fullscreen -class screensaver -e asciiquarium'
-local explorer = terminal .. '-title explorer -class explorer -e ranger'
-local taskmanager = terminal .. '-fullscreen -title taskmanager -e htop -u ' .. current_user
-local audiocontrol = terminal .. '-title audiocontrol -class audiocontrol -e alsamixer -c 1 -V all'
+local screensaver = terminal .. ' -fullscreen -class screensaver -e asciiquarium'
+local explorer = terminal .. ' -title explorer -class explorer -e ranger'
+local taskmanager = terminal .. ' -fullscreen -class taskmanager -title taskmanager -e htop -u ' .. current_user
+local audiocontrol = terminal .. ' -title audiocontrol -class audiocontrol -e alsamixer -c 1 -V all'
+local wicdcurses = terminal .. ' -title wicdcurses -class wicdcurses -e wicd-curses'
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -153,6 +154,7 @@ widget_volume_tooltip = awful.tooltip({
         return 'Volume: ' .. widget_volume.text
     end,
 })
+
 function updateVolume()
     vicious.force({ widget_volume, widget_volume_status })
     volume_value = tonumber(widget_volume.text)
@@ -196,6 +198,13 @@ local function changeVolume(action)
     updateVolume()
 end
 
+widget_volume_icon:buttons(awful.util.table.join(
+	awful.button({ }, 1, function() awful.spawn(audiocontrol) end),
+	awful.button({ }, 3, function() changeVolume('*') end),
+	awful.button({ }, 4, function() changeVolume('+') end),
+	awful.button({ }, 5, function() changeVolume('-') end)
+))
+
 widget_wireless_ssid = wibox.widget.textbox()
 vicious.register(widget_wireless_ssid, vicious.widgets.wifi, '${ssid}', 61, "wlp2s0")
 
@@ -209,6 +218,7 @@ widget_wireless_tooltip = awful.tooltip({
         return  'Wireless: ' .. widget_wireless_linp.text .. '\n' .. widget_wireless_ssid.text
     end,
 })
+widget_wireless_icon:buttons(awful.util.table.join( awful.button({ }, 1, function() awful.spawn(wicdcurses) end)))
 function updateWireless()
     vicious.force({ widget_wireless_ssid, widget_wireless_linp })
     wireless_linp = tonumber(widget_wireless_linp.text)
@@ -607,7 +617,7 @@ globalkeys = gears.table.join(
 
     -- custom keys
     awful.key({ "Control", "Shift" }, "Escape", function () awful.spawn(taskmanager) end,
-        {description = "Taskmanager", group = "taskmanager"}),
+        {description = "taskmanager", group = "taskmanager"}),
     awful.key({ modkey }, "e", function () awful.spawn(explorer) end,
         {description = "Explorer", group = "explorer"}),
 
@@ -804,8 +814,9 @@ awful.rules.rules = {
     { rule = { class = "Firefox" }, properties = { tag = "w" } },
     { rule = { class = "Zathura" }, properties = { tag = "r" } },
     { rule = { class = "Spotify" }, properties = { tag = "m" } },
+    { rule = { class = "audiocontrol" }, properties = { opacity = 0.9 } },
     { rule = { class = "explorer" }, properties = { tag = "f", floating = true, opacity = 0.95 } },
-    { rule = { class = "screensaver" }, properties = { opacity = 0.5 } },
+    { rule = { class = "screensaver" }, properties = { opacity = 0.25 } },
 }
 -- }}}
 

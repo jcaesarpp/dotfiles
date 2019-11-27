@@ -131,7 +131,7 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path .. "zenburn/titleb
 theme.titlebar_maximized_button_normal_inactive = themes_path .. "zenburn/titlebar/maximized_normal_inactive.png"
 
 --
-theme.clock = "/home/jcpp/.config/awesome/themes/jc/icons/clock.svg"
+theme.clock = "/home/jcpp/.config/awesome/themes/jc/icons/clock.png"
 
 theme.volume_muted = "/home/jcpp/.config/awesome/themes/jc/icons/volume_muted.png"
 theme.volume_off = "/home/jcpp/.config/awesome/themes/jc/icons/volume_off.png"
