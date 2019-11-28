@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
     "Plug 'powerline/powerline'
     Plug 'airblade/vim-gitgutter'
     Plug 'hallison/vim-markdown'
+    Plug 'freitass/todo.txt-vim'
 
     " color themes
 	Plug 'sainnhe/vim-color-lost-shrine'
