@@ -46,6 +46,8 @@ alias rm_thumbs.db='find . -iname "thumbs.db" -type f -exec rm -fv {} \;'
 alias rm_picasa.ini='find . -iname "*picasa.ini" -type f -exec rm -fv {} \;'
 alias rm_disturb='rm_desktop.ini; rm_thumbs.db; rm_picasa.ini'
 
+alias t='todo.sh -d ~/.todo/config'
+
 case $L6N in
     Scanntech )
         source ~/.private/scanntech/aliases_scanntech.sh
