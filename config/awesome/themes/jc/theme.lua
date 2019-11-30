@@ -176,6 +176,27 @@ theme.brightness_100 = "/home/jcpp/.config/awesome/themes/jc/icons/levelh_100.pn
 
 theme.cpu = "/home/jcpp/.config/awesome/themes/jc/icons/cpu.png"
 theme.ram = "/home/jcpp/.config/awesome/themes/jc/icons/ram.png"
+
+-- https://openweathermap.org/weather-conditions
+theme.weather_01d = "/home/jcpp/.config/awesome/themes/jc/icons/weather_01d.png"
+theme.weather_02d = "/home/jcpp/.config/awesome/themes/jc/icons/weather_02d.png"
+theme.weather_03d = "/home/jcpp/.config/awesome/themes/jc/icons/weather_03d.png"
+theme.weather_04d = "/home/jcpp/.config/awesome/themes/jc/icons/weather_04d.png"
+theme.weather_09d = "/home/jcpp/.config/awesome/themes/jc/icons/weather_09d.png"
+theme.weather_10d = "/home/jcpp/.config/awesome/themes/jc/icons/weather_10d.png"
+theme.weather_11d = "/home/jcpp/.config/awesome/themes/jc/icons/weather_11d.png"
+theme.weather_13d = "/home/jcpp/.config/awesome/themes/jc/icons/weather_13d.png"
+theme.weather_50d = "/home/jcpp/.config/awesome/themes/jc/icons/weather_50d.png"
+
+theme.weather_01n = "/home/jcpp/.config/awesome/themes/jc/icons/weather_01n.png"
+theme.weather_02n = "/home/jcpp/.config/awesome/themes/jc/icons/weather_02n.png"
+theme.weather_03n = "/home/jcpp/.config/awesome/themes/jc/icons/weather_03n.png"
+theme.weather_04n = "/home/jcpp/.config/awesome/themes/jc/icons/weather_04n.png"
+theme.weather_09n = "/home/jcpp/.config/awesome/themes/jc/icons/weather_09n.png"
+theme.weather_10n = "/home/jcpp/.config/awesome/themes/jc/icons/weather_10n.png"
+theme.weather_11n = "/home/jcpp/.config/awesome/themes/jc/icons/weather_11n.png"
+theme.weather_13n = "/home/jcpp/.config/awesome/themes/jc/icons/weather_13n.png"
+theme.weather_50n = "/home/jcpp/.config/awesome/themes/jc/icons/weather_50n.png"
 -- }}}
 -- }}}
 

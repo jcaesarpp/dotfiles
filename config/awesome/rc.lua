@@ -9,7 +9,7 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 -- Theme handling library
-local beautiful = require("beautiful")
+beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -249,9 +249,11 @@ vicious.register(widget_uptime, vicious.widgets.uptime, '$1 $2 $3', 61)
 widget_uptime_load = wibox.widget.textbox()
 vicious.register(widget_uptime_load, vicious.widgets.uptime, '$4 $5 $6', 61)
 
-weatherwidget = wibox.widget.textbox()
+widget_weather = wibox.widget.textbox()
 -- Carrasco Uruguay
-vicious.register(weatherwidget, vicious.widgets.weather, 'weather { ${city} ${tempc} ${humid} }', 900, "SUMU")
+--vicious.register(widget_weather, vicious.widgets.weather, 'weather { ${city} ${tempc} ${humid} }', 900, "SUMU")
+widget_weather_icon = wibox.widget.imagebox()
+widget_weather_tooltip = awful.tooltip({ objects = { widget_weather, widget_weather_icon }, })
 awful.widget.watch("openweathermap.sh", 3601)
 
 widget_battery_status = wibox.widget.textbox()
@@ -500,7 +502,8 @@ awful.screen.connect_for_each_screen(function(s)
             widget_cpu,
             widget_ram_icon,
             widget_ram,
-            weatherwidget,
+            widget_weather_icon,
+            widget_weather,
             widget_brightness_icon,
             widget_brightness_icon_level,
             widget_wireless_icon,
