@@ -254,7 +254,7 @@ widget_weather = wibox.widget.textbox()
 --vicious.register(widget_weather, vicious.widgets.weather, 'weather { ${city} ${tempc} ${humid} }', 900, "SUMU")
 widget_weather_icon = wibox.widget.imagebox()
 widget_weather_tooltip = awful.tooltip({ objects = { widget_weather, widget_weather_icon }, })
-awful.widget.watch("openweathermap.sh", 3601)
+awful.widget.watch("openweathermap.sh", 1801)
 
 widget_battery_status = wibox.widget.textbox()
 vicious.register(widget_battery_status, vicious.widgets.bat, "$1", 61, "BAT0")
