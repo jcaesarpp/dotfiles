@@ -252,6 +252,7 @@ vicious.register(widget_uptime_load, vicious.widgets.uptime, '$4 $5 $6', 61)
 weatherwidget = wibox.widget.textbox()
 -- Carrasco Uruguay
 vicious.register(weatherwidget, vicious.widgets.weather, 'weather { ${city} ${tempc} ${humid} }', 900, "SUMU")
+awful.widget.watch("openweathermap.sh", 3601)
 
 widget_battery_status = wibox.widget.textbox()
 vicious.register(widget_battery_status, vicious.widgets.bat, "$1", 61, "BAT0")
@@ -373,7 +374,7 @@ function updateBrightness()
 
     widget_brightness_icon_level.image = brightness_icon_level
 end
-awful.widget.watch("awesome-client 'updateBrightness()'", 16)
+awful.widget.watch("awesome-client 'updateBrightness()'", 31)
 
 local function changeBrightness(value)
     if value == 'f' then
