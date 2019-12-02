@@ -137,7 +137,7 @@ widget_clock_icon = wibox.widget.imagebox(beautiful.clock)
 widget_clock_tooltip = awful.tooltip({
     objects = { widget_clock, widget_clock_icon },
 	timer_function = function()
-        return os.date("%A %d, %B %Y") .. '\nUptime: ' .. widget_uptime.text .. '\n\n' .. io.popen('/usr/local/bin/todo.sh'):read("*all")
+        return os.date("%A %d, %B %Y") .. '\nUptime: ' .. widget_uptime.text
     end,
 })
 

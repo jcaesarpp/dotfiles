@@ -123,3 +123,5 @@ PERL_MM_OPT="INSTALL_BASE=/home/jcpp/perl5"; export PERL_MM_OPT;
 
 export QT_QPA_PLATFORMTHEME=qgnomeplatform
 
+todo.
+
