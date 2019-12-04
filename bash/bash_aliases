@@ -47,6 +47,7 @@ alias rm_picasa.ini='find . -iname "*picasa.ini" -type f -exec rm -fv {} \;'
 alias rm_disturb='rm_desktop.ini; rm_thumbs.db; rm_picasa.ini'
 
 alias t='todo.sh -Atn -d ~/.todo/config'
+complete -F _todo t
 
 case $L6N in
     Scanntech )
