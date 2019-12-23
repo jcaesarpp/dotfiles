@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug 'hallison/vim-markdown'
     Plug 'freitass/todo.txt-vim'
+    Plug 'vim-latex/vim-latex'
 
     " color themes
 	Plug 'sainnhe/vim-color-lost-shrine'
