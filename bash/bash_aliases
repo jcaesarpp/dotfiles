@@ -51,7 +51,7 @@ complete -F _todo t
 
 case $L6N in
     Scanntech )
-        source ~/store/workspaces/scanntech/infra-docs/bash_scanntech_infraestructura.sh
+        source /media/store/workspaces/scanntech/infra-docs/bash_scanntech_infraestructura.sh
         source ~/.private/scanntech/functions_scanntech.sh
         source ~/.private/scanntech/aliases_scanntech.sh
         source ~/.private/scanntech/aliases_scanntech_ssh.sh
