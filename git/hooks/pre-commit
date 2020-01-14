@@ -1,18 +1,20 @@
 #!/bin/bash
 # Julio C. Pompa Puente <julio.c.pompa.puente@gmail.com>
 
-FLAG_CONTINUE=1
-
 if [[ $L6N = 'Scanntech' ]]; then
     git remote -vv | grep -i fetch | grep -qi scanntech
-    if [[ $? -eq 0 ]]; then
+    [[ $? -eq 0 ]] && \
         GIT_REPO_NAME=`git remote -v | grep -m 1 -E '^scanntech' | \
             rev | cut -d/ -f1 | rev | cut -d' ' -f1`
-        [[ $GIT_REPO_NAME = 'notas' ]] && \
+
+    case $GIT_REPO_NAME in
+        'notas' | 'infra-docs')
             git reset --hard scanntech/master
-        git pull scanntech master && \
+            git pull scanntech master && \
             FLAG_CONTINUE=0
-    fi
+        ;;
+        *) FLAG_CONTINUE=1 ;;
+    esac
 fi
 
 if [[ $FLAG_CONTINUE -eq 1 ]]; then
