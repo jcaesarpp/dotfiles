@@ -9,7 +9,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-latex/vim-latex'
 
     " color themes
-	Plug 'sainnhe/vim-color-lost-shrine'
 	Plug 'benburrill/potato-colors' 
 	Plug 'lithammer/vim-eighties'
 	Plug 'aonemd/kuroi.vim'
