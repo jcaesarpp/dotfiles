@@ -122,6 +122,7 @@ PERL_MB_OPT="--install_base \"/home/jcpp/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/jcpp/perl5"; export PERL_MM_OPT;
 
 export QT_QPA_PLATFORMTHEME=qgnomeplatform
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 eval $(~/.linuxbrew/bin/brew shellenv)
 
