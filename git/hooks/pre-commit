@@ -8,7 +8,7 @@ if [[ $L6N = 'Scanntech' ]]; then
             rev | cut -d/ -f1 | rev | cut -d' ' -f1`
 
     case $GIT_REPO_NAME in
-        'notas' | 'infra-docs')
+        'notas')
             git reset --hard scanntech/master
             git pull scanntech master && \
             FLAG_CONTINUE=0

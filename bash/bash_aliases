@@ -55,6 +55,7 @@ case $L6N in
         source ~/.private/scanntech/functions_scanntech.sh
         source ~/.private/scanntech/aliases_scanntech.sh
         source ~/.private/scanntech/aliases_scanntech_ssh.sh
+        alias navicat="${HOME}/.navicat121_premium_es_x64/start_navicat"
     ;;
 esac
 
