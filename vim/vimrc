@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'bronson/vim-toggle-wrap'
     "Plug 'powerline/powerline'
     Plug 'airblade/vim-gitgutter'
-    Plug 'plasticboy/vim-markdown'
+    "Plug 'plasticboy/vim-markdown'
     "Plug 'hallison/vim-markdown'
     "Plug 'freitass/todo.txt-vim'
     Plug 'vim-latex/vim-latex'
