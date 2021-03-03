@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
     "Plug 'hallison/vim-markdown'
     "Plug 'freitass/todo.txt-vim'
     Plug 'vim-latex/vim-latex'
+    Plug 'junegunn/fzf.vim'
 
     " color themes
 	Plug 'benburrill/potato-colors' 
@@ -79,4 +80,10 @@ if has('gui_running')
   
   set guifont=Monospace\ 11
 endif
+
+" fzf
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_preview_window = ['right:60%']
+let g:fzf_buffers_jump = 1
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
