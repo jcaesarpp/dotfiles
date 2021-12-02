@@ -8,12 +8,14 @@ call plug#begin('~/.vim/plugged')
     "Plug 'hallison/vim-markdown'
     "Plug 'freitass/todo.txt-vim'
     Plug 'vim-latex/vim-latex'
+    Plug 'mapkts/enwise'
     Plug 'junegunn/fzf.vim'
 
     " color themes
 	Plug 'benburrill/potato-colors' 
 	Plug 'lithammer/vim-eighties'
 	Plug 'aonemd/kuroi.vim'
+    Plug 'wuelnerdotexe/vim-enfocado'
 	
 	" tpope
 	Plug 'tpope/vim-surround'
@@ -36,7 +38,9 @@ set autoindent
 set smarttab
 
 syntax on
-colorscheme kuroi
+"colorscheme kuroi
+"colorscheme potato
+colorscheme enfocado
 set background=dark
 
 " nerdtree
@@ -86,4 +90,9 @@ let g:fzf_command_prefix = 'Fzf'
 let g:fzf_preview_window = ['right:60%']
 let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+let g:enwise_enable_globally = 1
+
+"set termguicolors
+set t_Co=256
 
