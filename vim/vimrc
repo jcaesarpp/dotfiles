@@ -16,6 +16,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'lithammer/vim-eighties'
 	Plug 'aonemd/kuroi.vim'
     Plug 'wuelnerdotexe/vim-enfocado'
+    Plug 'blueshirts/darcula'
+    Plug 'arcticicestudio/nord-vim'
 	
 	" tpope
 	Plug 'tpope/vim-surround'
@@ -38,10 +40,8 @@ set autoindent
 set smarttab
 
 syntax on
-"colorscheme kuroi
-"colorscheme potato
-colorscheme enfocado
-set background=dark
+colorscheme nord
+"set background=dark
 
 " nerdtree
 map <F9> :NERDTreeToggle<CR>
