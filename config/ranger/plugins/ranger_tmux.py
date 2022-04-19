@@ -1,0 +1,1 @@
+/home/jcpp/.local/lib/python3.10/site-packages/ranger_tmux/plugin.py

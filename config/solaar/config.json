@@ -1,0 +1,62 @@
+{
+  "B36900000000:9C5ABACC": {
+    "_absent": [
+      "hi-res-scroll",
+      "lowres-smooth-scroll",
+      "hires-smooth-invert",
+      "hires-smooth-resolution",
+      "smart-shift",
+      "thumb-scroll-mode",
+      "thumb-scroll-invert",
+      "onboard_profiles",
+      "report_rate",
+      "pointer_speed",
+      "dpi",
+      "dpi-sliding",
+      "speed-change",
+      "mouse-gestures",
+      "backlight-timed",
+      "reprogrammable-keys",
+      "persistent-remappable-keys",
+      "divert-crown",
+      "crown-smooth",
+      "divert-gkeys",
+      "m-key-leds",
+      "mr-key-led",
+      "gesture2-gestures",
+      "gesture2-divert",
+      "gesture2-params"
+    ],
+    "_modelId": "B36900000000",
+    "_name": "MX Keys Mini",
+    "_sensitive": {
+      "change-host": false,
+      "disable-keyboard-keys": false,
+      "fn-swap": true,
+      "multiplatform": false
+    },
+    "_unitId": "9C5ABACC",
+    "backlight": true,
+    "disable-keyboard-keys": {
+      "1": false,
+      "16": false,
+      "8": false
+    },
+    "divert-keys": {
+      "226": 0,
+      "227": 0,
+      "229": 0,
+      "231": 0,
+      "232": 0,
+      "233": 0,
+      "259": 0,
+      "264": 0,
+      "266": 0,
+      "279": 0,
+      "284": 0
+    },
+    "fn-swap": false,
+    "multiplatform": 3
+  },
+  "_version": "1.1.2"
+}
