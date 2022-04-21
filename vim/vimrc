@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-latex/vim-latex'
     Plug 'mapkts/enwise'
     Plug 'junegunn/fzf.vim'
+    Plug 'itspriddle/vim-shellcheck'
 
     " color themes
 	Plug 'benburrill/potato-colors' 

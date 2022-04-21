@@ -135,3 +135,6 @@ fi
 # Scanntech
 [[ -d ~/.private/scanntech ]] && for i in $(/usr/bin/ls ~/.private/scanntech/*); do source $i; done
 
+export JIRA_API_TOKEN=GZSpkyXneZyGsKW35cEw75E7
+export JIRA_AUTH_TYPE=bearer
+
