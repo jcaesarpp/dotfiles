@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-latex/vim-latex'
     Plug 'mapkts/enwise'
     Plug 'junegunn/fzf.vim'
+    Plug 'tribela/vim-transparent'
 
     " color themes
 	Plug 'benburrill/potato-colors' 
@@ -19,6 +20,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'wuelnerdotexe/vim-enfocado'
     Plug 'blueshirts/darcula'
     Plug 'arcticicestudio/nord-vim'
+    Plug 'jnurmine/Zenburn'
 	
 	" tpope
 	Plug 'tpope/vim-surround'
@@ -42,7 +44,7 @@ set smarttab
 
 syntax on
 colorscheme nord
-"set background=dark
+set background=dark
 
 " nerdtree
 map <F9> :NERDTreeToggle<CR>

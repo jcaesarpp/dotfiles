@@ -134,3 +134,5 @@ export FZF_CTRL_T_OPTS="--select-1 --exit-0 --preview-window 'right:80%' --previ
 export FZF_ALT_C_OPTS="--select-1 --exit-0 --preview 'tree -C {} | head -200' --bind '?:toggle-preview,pgdn:preview-page-down,pgup:preview-page-up'"
 alias fvim='vim $(fzf)'
 
+export LIBVA_DRIVER_NAME='iHD'
+

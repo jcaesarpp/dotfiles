@@ -1,0 +1,12 @@
+
+ass=true
+ao=pulse
+subfont-autoscale=3
+subfont-text-scale=6
+#subfont-osd-scale=3
+fs=yes
+zoom=yes
+vf=dsize=16/10
+
+ass-font-color = "ffff0000"
+

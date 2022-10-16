@@ -17,11 +17,14 @@ PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/var/lib/snapd/snap/bin'
 export PATH
 export GOPATH="${HOME}/.go"
 
+export TERM='xterm-256color'
+export LIBVA_DRIVER_NAME='iHD'
+
 #export ZSH_TMUX_AUTOSTART=true
 export ZSH_ALIAS_FINDER_AUTOMATIC=true
 export RANGER_LOAD_DEFAULT_RC=false
 export EDITOR='vim'
-export PAGER='most'
+#export PAGER='most'
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
