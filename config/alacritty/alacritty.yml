@@ -1,14 +1,23 @@
 window:
-  title: Alacritty
+  title: alacritty
   dynamic_title: true
   opacity: 0.97
   decorations: none
-  dimensions:
-    columns: 120
-    lines: 30
+  glyph_offset:
+    x: 0
+    y: 0
+  offset:
+    x: 0
+    y: 0
+  padding:
+    x: 0
+    y: 0
+  dynamic_padding: false
+  startup_mode: Maximized
 
 font:
   size: 12
+
 colors:
   # Default colors
   primary:
