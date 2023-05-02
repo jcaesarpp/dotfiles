@@ -1,22 +1,18 @@
+shell:
+  program: /bin/zsh
+  args:
+    - -c
+    - cd ~/Downloads; tmux new-session -As $USER
 window:
   title: alacritty
   dynamic_title: true
   opacity: 0.97
   decorations: none
-  glyph_offset:
-    x: 0
-    y: 0
-  offset:
-    x: 0
-    y: 0
-  padding:
-    x: 0
-    y: 0
   dynamic_padding: false
   startup_mode: Maximized
 
 font:
-  size: 12
+  size: 14
 
 colors:
   # Default colors
@@ -50,3 +46,4 @@ colors:
     - { index: 16, color: '0xd18616' }
     - { index: 17, color: '0xff938a' }
 theme: github_dimmed
+

@@ -1,9 +1,8 @@
-- 1.1.5
+- 1.1.9
 - _NAME: MX Keys Mini
-  _absent: [hi-res-scroll, lowres-smooth-scroll, hires-smooth-invert, hires-smooth-resolution, smart-shift, thumb-scroll-mode, thumb-scroll-invert, onboard_profiles,
-    report_rate, pointer_speed, dpi, dpi-sliding, speed-change, mouse-gestures, backlight-timed, reprogrammable-keys, persistent-remappable-keys, divert-crown,
-    crown-smooth, divert-gkeys, m-key-leds, mr-key-led, gesture2-gestures, gesture2-divert, gesture2-params, lowres-scroll-mode, hires-scroll-mode, sidetone,
-    equalizer]
+  _absent: [hi-res-scroll, lowres-scroll-mode, hires-smooth-invert, hires-smooth-resolution, hires-scroll-mode, scroll-ratchet, smart-shift, thumb-scroll-invert,
+    thumb-scroll-mode, onboard_profiles, report_rate, pointer_speed, dpi, speed-change, backlight-timed, reprogrammable-keys, persistent-remappable-keys,
+    crown-smooth, divert-crown, divert-gkeys, m-key-leds, mr-key-led, gesture2-gestures, gesture2-divert, gesture2-params, sidetone, equalizer, adc_power_management]
   _battery: 4100
   _modelId: B36900000000
   _sensitive: {change-host: false, disable-keyboard-keys: false, fn-swap: true, multiplatform: false}
@@ -17,22 +16,19 @@
   fn-swap: false
   multiplatform: 3
 - _NAME: Wireless Mouse M185 new
-  _absent: [hi-res-scroll, hires-smooth-invert, hires-smooth-resolution, hires-scroll-mode, smart-shift, thumb-scroll-mode, thumb-scroll-invert, onboard_profiles,
-    report_rate, dpi, dpi-sliding, speed-change, backlight, backlight-timed, fn-swap, persistent-remappable-keys, disable-keyboard-keys, divert-crown, crown-smooth,
-    divert-gkeys, m-key-leds, mr-key-led, multiplatform, change-host, gesture2-gestures, gesture2-divert, gesture2-params]
   _modelId: '000000000000'
+  _sensitive: {hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore}
   _serial: '00000000'
   _unitId: '00000000'
   _wpid: '4054'
   divert-keys: {82: 0}
   lowres-scroll-mode: false
-  mouse-gestures: 0
   pointer_speed: 256
   reprogrammable-keys: {80: 80, 81: 81, 82: 82}
 - _NAME: MX Anywhere 3
-  _absent: [hi-res-scroll, lowres-scroll-mode, thumb-scroll-mode, thumb-scroll-invert, onboard_profiles, report_rate, pointer_speed, speed-change, backlight,
-    backlight-timed, fn-swap, persistent-remappable-keys, disable-keyboard-keys, divert-crown, crown-smooth, divert-gkeys, m-key-leds, mr-key-led, multiplatform,
-    gesture2-gestures, gesture2-divert, gesture2-params, sidetone, equalizer]
+  _absent: [hi-res-scroll, lowres-scroll-mode, scroll-ratchet, thumb-scroll-invert, thumb-scroll-mode, onboard_profiles, report_rate, pointer_speed, speed-change,
+    backlight, backlight-timed, fn-swap, persistent-remappable-keys, disable-keyboard-keys, crown-smooth, divert-crown, divert-gkeys, m-key-leds, mr-key-led,
+    multiplatform, gesture2-gestures, gesture2-divert, gesture2-params, sidetone, equalizer, adc_power_management]
   _battery: 4100
   _modelId: B02540900000
   _sensitive: {divert-keys: false, dpi-sliding: ignore, mouse-gestures: false}
@@ -40,9 +36,17 @@
   change-host: null
   divert-keys: {82: 0, 83: 0, 86: 0, 196: 2}
   dpi: 1000
-  dpi-sliding: 0
   hires-scroll-mode: false
   hires-smooth-invert: false
   hires-smooth-resolution: false
   reprogrammable-keys: {80: 80, 81: 81, 82: 82, 83: 83, 86: 86, 196: 196}
   smart-shift: 10
+- _NAME: MX Keys Mini
+  _sensitive: {hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore}
+  _unitId: 9C5ABACC
+  backlight: true
+  change-host: null
+  disable-keyboard-keys: {1: false, 8: false, 16: false}
+  divert-keys: {226: 0, 227: 0, 229: 0, 231: 0, 232: 0, 233: 0, 259: 0, 264: 0, 266: 0, 279: 0, 284: 0}
+  fn-swap: false
+  multiplatform: 3
