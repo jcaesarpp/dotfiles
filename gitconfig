@@ -15,3 +15,5 @@
 [alias]
 	coa = !git add -A && git commit -am
 
+[init]
+	defaultBranch = main
