@@ -12,7 +12,7 @@ window:
   startup_mode: Maximized
 
 font:
-  size: 14
+  size: 10
 
 colors:
   # Default colors
