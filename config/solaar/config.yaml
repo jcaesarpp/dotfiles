@@ -16,6 +16,11 @@
   fn-swap: false
   multiplatform: 3
 - _NAME: Wireless Mouse M185 new
+  _absent: [hi-res-scroll, hires-smooth-invert, hires-smooth-resolution, hires-scroll-mode, scroll-ratchet, smart-shift, thumb-scroll-invert, thumb-scroll-mode,
+    onboard_profiles, report_rate, dpi, speed-change, backlight, backlight-timed, fn-swap, persistent-remappable-keys, disable-keyboard-keys, crown-smooth,
+    divert-crown, divert-gkeys, m-key-leds, mr-key-led, multiplatform, change-host, gesture2-gestures, gesture2-divert, gesture2-params, sidetone, equalizer,
+    adc_power_management]
+  _battery: 0
   _modelId: '000000000000'
   _sensitive: {hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore}
   _serial: '00000000'
@@ -31,7 +36,7 @@
     multiplatform, gesture2-gestures, gesture2-divert, gesture2-params, sidetone, equalizer, adc_power_management]
   _battery: 4100
   _modelId: B02540900000
-  _sensitive: {divert-keys: false, dpi-sliding: ignore, mouse-gestures: false}
+  _sensitive: {divert-keys: false, dpi-sliding: ignore, hires-scroll-mode: false, hires-smooth-resolution: false, mouse-gestures: false}
   _unitId: 73B570ED
   change-host: null
   divert-keys: {82: 0, 83: 0, 86: 0, 196: 2}
@@ -50,3 +55,20 @@
   divert-keys: {226: 0, 227: 0, 229: 0, 231: 0, 232: 0, 233: 0, 259: 0, 264: 0, 266: 0, 279: 0, 284: 0}
   fn-swap: false
   multiplatform: 3
+- _NAME: MX Anywhere 3
+  _absent: [hi-res-scroll, lowres-scroll-mode, scroll-ratchet, thumb-scroll-invert, thumb-scroll-mode, onboard_profiles, report_rate, pointer_speed, speed-change,
+    backlight, backlight-timed, fn-swap, persistent-remappable-keys, disable-keyboard-keys, crown-smooth, divert-crown, divert-gkeys, m-key-leds, mr-key-led,
+    multiplatform, gesture2-gestures, gesture2-divert, gesture2-params, sidetone, equalizer, adc_power_management]
+  _battery: 4100
+  _modelId: B02540900000
+  _sensitive: {hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore}
+  _unitId: D07AC3F5
+  change-host: null
+  divert-keys: {82: 0, 83: 0, 86: 0, 196: 0}
+  dpi: 1000
+  hires-scroll-mode: false
+  hires-smooth-invert: false
+  hires-smooth-resolution: false
+  reprogrammable-keys: {80: 80, 81: 81, 82: 82, 83: 83, 86: 86, 196: 196}
+  smart-shift: 10
+- {_NAME: Wireless Keyboard MK270, _battery: 4096, _modelId: Wireless Keyboard MK270, _serial: '00000000', _unitId: '00000000', _wpid: '4023'}

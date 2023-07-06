@@ -49,7 +49,7 @@ alias rm_disturb='rm_desktop.ini; rm_thumbs.db; rm_picasa.ini'
 case $HOSTNAME in
     laptop-jpompa )
         #source /media/store/workspaces/scanntech/infra-docs/bash_scanntech_infraestructura.sh
-        source ~/.private/scanntech/functions_scanntech.sh
+        source ~/.private/scanntech/00-functions.sh
         source ~/.private/scanntech/aliases_scanntech.sh
         alias navicat="${HOME}/.navicat121_premium_es_x64/start_navicat"
 
@@ -59,4 +59,6 @@ case $HOSTNAME in
         source ~/.private/aliases_apt.sh
     ;;
 esac
+
+source ~/.private/scanntech/00-functions.sh
 
