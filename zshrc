@@ -17,7 +17,7 @@ PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/var/lib/snapd/snap/bin'
 export PATH
 export GOPATH="${HOME}/.go"
 
-export TERM='xterm-256color'
+export TERM='xterm'
 export LIBVA_DRIVER_NAME='iHD'
 
 #export ZSH_TMUX_AUTOSTART=true

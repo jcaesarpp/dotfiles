@@ -62,3 +62,6 @@ esac
 
 source ~/.private/scanntech/00-functions.sh
 
+alias docker=podman
+alias docker-compose=podman-compose
+

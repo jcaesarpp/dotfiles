@@ -10,7 +10,7 @@ Xft.rgba: rgb
 ! xterm
 xterm*utf8: 1
 xterm*faceName: hack
-xterm*faceSize: 12
+xterm*faceSize: 16
 xterm*termName: xterm-256color
 xterm*colorMode: on
 xterm*dynamicColors: on
