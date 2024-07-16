@@ -1,4 +1,5 @@
-theme = "github_dimmed"
+#theme = "github_dimmed"
+import = [ "~/.config/alacritty/themes/themes/github_dimmed.toml" ]
 
 [[colors.indexed_colors]]
 color = "0xd18616"
@@ -43,6 +44,6 @@ program = "/bin/zsh"
 decorations = "none"
 dynamic_padding = false
 dynamic_title = true
-opacity = 0.97
+opacity = 0.96
 startup_mode = "Maximized"
 title = "alacritty"

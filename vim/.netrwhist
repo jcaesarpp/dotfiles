@@ -1,0 +1,4 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='scp://root@192.168.11.71//u01/tomcat_conf/promoant/'
+let g:netrw_dirhist_1='scp://tomcat-club-operativo-7//u01/tomcat_conf/promobee/'
