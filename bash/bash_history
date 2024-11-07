@@ -1,203 +1,3 @@
-vim ~/.bashrc 
-sync; exit
-sudo dnf install git
-sudo dnf install etckeeper
-sudo dnf update
-git clone https://github.com/jcaesarpp/dotfiles ~/.dotfiles
-git clone https://github.com/jcaesarpp/private ~/.private
-ll
-rm -rf Desktop Documents Downloads Music Pictures Public Templates Videos
-mkdir -vp /mnt/storage/{documents,downloads,music,pictures,public,templates,videos,workspaces}
-sudo mkdir -vp /mnt/storage/{documents,downloads,music,pictures,public,templates,videos,workspaces}
-sudo chown jpompa:jpompa /mnt/storage -Rv
-ll /mnt/storage/
-ln -svf /mnt/storage/documents ~/Documents
-ln -svf ~/Downloads ~/Desktop
-ln -svf /mnt/storage/downloads ~/Downloads
-ln -svf /mnt/storage/music ~/Music
-ln -svf /mnt/storage/pictures ~/Pictures
-ln -svf /mnt/storage/templates ~/Templates
-ln -svf /mnt/storage/videos ~/Videos
-ln -svf /mnt/storage/workspaces ~/Workspaces
-ll
-nautilus .
-ranger
-dnf search imghdr
-dnf install mc
-sudo dnf install mc
-cd ~/Workspaces/
-mkdir jcaesarpp
-cd jcaesarpp/
-git clone https://github.com/jcaesarpp/bash
-cd ../../Documents/
-git clone https://github.com/jcaesarpp/wiki-js
-git clone https://github.com/jcaesarpp/logbook
-cd
-ssh-keygen 
-df -h
-sudo mc /run/media/jpompa/SS/ /mnt/storage/
-ps aux | grep chrome
-sudo chown jpompa:jpompa /mnt/storage -Rv
-mkdir /mnt/storage/.opt
-ps aux | grep chrome
-ps aux | awk '/chrome/ { print $2 }' 
-kill -9 $(ps aux | awk '/chrome/ { print $2 }')
-ps aux | grep chrome
-sudo mc /opt/ /mnt/storage/.opt/
-sudo rm -fv /opt/
-sudo rm -rfv /opt/
-sudo ln -svf /mnt/storage/.opt /opt
-sudo dnf install rsync
-sudo dnf install rsync-daemon
-rsync -azvhP /run/media/jpompa/SS/storage/.opt/iso /opt/
-source ~/.bashrc 
-rsync -azvhP /run/media/jpompa/SS/storage/.opt/iso /opt/
-sync
-bluetoothctl 
-sudo dnf install solaar
-solaar 
-cd ~/.ssh/
-ll
-scp /home/jpompa/.private/ssh/id_ed25519.pub root@10.82.0.1:/opt/ansible/playbooks/public_keys/jpompa_ed25519.pub
-scp /home/jpompa/.private/ssh/id_ed25519.pub root@10.82.0.1:/opt/ansible/playbooks/public_keys/jpompa_id_ed25519.pub
-ssh root@192.168.1.111
-cd ~/.ssh/
-ll
-rm known_hosts.old 
-ll
-cd
-ssh root@192.168.2.34
-sudo dnf install remmina
-ssh root@192.168.2.114
-ssh root@192.168.2.104
-ssh root@192.168.2.114
-ssh root@192.168.2.214
-ssh root@192.168.2.124
-ssh root@192.168.2.114
-ssh root@192.168.2.124
-ssh root@192.168.2.114
-sudo dnf update
-ssh root@192.168.2.114
-traceroute 192.168.2.114
-ssh root@192.168.2.114
-history | grep 8
-ssh root@10.82.0.1
-ssh root@192.168.2.114
-cat /etc/os-release 
-sudo -v
-ssh root@192.168.2.114
-cd ~/Downloads/
-wget --no-check-certificate -q -r 'https://drive.scanntech.com/index.php/s/5ENLqkwAkn2bDpm/download' -O oracle-instantclient11.2-sqlplus-11.2.0.4.0-1.x86_64.rpm
-wget --no-check-certificate -q -r 'https://drive.scanntech.com/index.php/s/fQwa8rxsEAqx3zt/download' -O oracle-instantclient11.2-devel-11.2.0.4.0-1.x86_64.rpm
-wget --no-check-certificate -q -r 'https://drive.scanntech.com/index.php/s/QEaWjfBJTXBDnoy/download' -O oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm
-ll
-sudo rpm -ivh oracle-instantclient11.2-*.rpm
-ll
-rm oracle-instantclient11.2-sqlplus-11.2.0.4.0-1.x86_64\ \(1\).rpm 
-sudo rpm -Uvh oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm
-rm -rf *
-ll
-sudo rpm -Uvh oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm
-sudo rpm -Uvh oracle-instantclient11.2*.rpm
-sudo rpm -Uvh oracle-*.rpm
-rpm -qa | grep oracle-instantclient
-rpm -Uvh oracle-instantclient11.2-devel-11.2.0.4.0-1.x86_64.rpm
-sudo rpm -Uvh oracle-instantclient11.2-devel-11.2.0.4.0-1.x86_64.rpm
-ll
-sudo rpm -Uvh oracle-instantclient11.2-sqlplus-11.2.0.4.0-1.x86_64.rpm
-ll
-rpm -qa | grep oracle-instantclient
-echo $ORACLE_HOME
-vim ~/.bashrc 
-source vim ~/.bashrc 
-source ~/.bashrc 
-echo "$ORACLE_HOME/lib"
-sudo echo "$ORACLE_HOME/lib" | sudo tee -a /etc/ld.so.conf.d/oracle-x86_64.conf
-sudo ldconfig
-sudo mkdir -p $ORACLE_HOME/sqlplus/admin
-cat <<'EOF' | sudo tee $ORACLE_HOME/sqlplus/admin/glogin.sql 1>/dev/null
-set term off
-set serveroutput on format wrapped
-set trimspool on
-set pagesize 999
-set heading on
-set underline -
-
-define sql_prompt=idle
-define sql_prompt = 'not connected'
-
-column id_plus_exp FOR 990 HEADING i
-column parent_id_plus_exp FOR 990 HEADING p
-column plan_plus_exp FOR a60
-column object_node_plus_exp FOR a8
-column other_tag_plus_exp FOR a29
-column other_plus_exp FOR a44
-column file_name format a70
-column tablespace_name format a50
-
-column user_sid new_value sql_prompt
-set linesize 30000
-
-select lower(user)||'@'||'&_CONNECT_IDENTIFIER' user_sid
-from dual;
-
-alter session set NLS_TERRITORY=america;
-alter session set NLS_NUMERIC_CHARACTERS =',.';
-alter session set NLS_DATE_FORMAT = 'ddmmyyyy hh24:mi:ss';
-
-set sqlprompt '&sql_prompt> '
-
-set time on
-set timing on
-set term on
-EOF
-
-sqlplus
-yum search libnsl
-sudo yum install libnsl
-sqlplus
-cat $ORACLE_HOME/sqlplus/admin/glogin.sql
-s
-sqlplus
-cd /usr/lib/oracle/11.2/client64/bin/
-sudo chmod o+rw -R .
-cp sqlplus genezi adrci /tmp/
-cd ../
-rm -rf bin/
-sudo rm -rf bin/
-sudo ln -sfv /mnt/storage/workspaces/scanntech/oracle-sql bin
-cp /tmp/{sqlplus,genezi,adrci} bin/
-cd /usr/lib/oracle/11.2/client64
-sudo ln -s bin/tnsnames.ora tnsnames.ora
-sqlplus
-sudo dnf updayte
-sudo dnf update
-sync
-solaar 
-ssh-keygen 
-ls ~/.ssh/
-cd .dotfiles/
-git pull
-cd ../.private/
-ll
-cd ssh/
-ll
-rm -rf *
-mv -vf ~/.ssh/id_ed25519* .
-cd ~/.ssh/
-ln -svf ~/.private/ssh/id_ed25519
-ln -svf ~/.private/ssh/id_ed25519.pub 
-ll
-cd ~/.private/
-git -A
-cat ~/.dotfiles/gitconfig 
-git add -A
-git commit -am 'ssh key'
-cat ~/Documents/logbook/docs/ssh.md 
-cat ~/Documents/logbook/docs/git.md 
-ln -svf ~/.dotfiles/gitconfig ~/.gitconfig
-g coa 'ssh key'
-git coa 'ssh key'
 git push
 git pull
 git push
@@ -998,3 +798,203 @@ ssh truenas-2
 ssh truenas-4
 cd ~/Downloads/
 ssh truenas-3
+cd ~/Downloads/
+ls
+mv PG\ API\ 1\ Colombia.sql pg-api-1-co.sql
+grep 192.168.2.64 /mnt/storage/workspaces/scanntech/infra-docs/bash_scanntech_infraestructura.sh 
+psql -v ON_ERROR_STOP=on -h 192.168.2.64 -p 5432 -d pgapico1 -U postgres
+ds-desa-2
+ssh ds-desa-2
+rm -rf *
+ll
+psql -v ON_ERROR_STOP=on -h 192.168.2.64 -p 5432 -d pgapico1 -U postgres
+sudo dnf update
+sudo dnf clean
+sudo dnf clean all
+grep 'alias bd' /mnt/storage/workspaces/scanntech/infra-docs/bash_scanntech_infraestructura.sh 
+grep 'alias bd' /mnt/storage/workspaces/scanntech/infra-docs/bash_scanntech_infraestructura.sh | sed -e 's/alias\ bd\./alias\ db\./g'
+grep 'alias bd' /mnt/storage/workspaces/scanntech/infra-docs/bash_scanntech_infraestructura.sh | sed -e 's/alias\ bd\./alias\ db\./g' >> ~/.private/scanntech/aliases-db.sh 
+vim ~/.bashrc 
+cd ~/.private/
+ll
+rm _sources\:\ true 
+vim bashrc-jcpp.sh
+rm bashrc-jcpp.sh
+vim aliases.sh 
+vim aliases-jcpp.sh
+rm aliases-jcpp.sh
+ll
+vim functions-jcpp.sh
+rm functions-jcpp.sh
+ll
+cd ssh/
+ll
+cd ../
+ll
+vim -p *.sh
+grep 'alias bd' /mnt/storage/workspaces/scanntech/infra-docs/bash_scanntech_infraestructura.sh | sed -e 's/alias\ bd\./alias\ db\./g' >> ~/.private/scanntech/aliases-db.sh 
+vim scanntech/* -p
+ll
+cd scanntech/
+ll
+run-parts .
+cat 00-functions.sh 
+source 00-functions.sh 
+vim 00-functions.sh 
+source 00-functions.sh 
+__makeDBAlias 
+db.club_analytics
+source 00-functions.sh 
+vim 00-functions.sh 
+cd
+ln -svf /mnt/storage/workspaces/scanntech/infra-docs/config/postgresql/.pgpass ~/
+vim 00
+cd -
+vim 00-functions.sh 
+gitPullScanntech 
+db.club_analytics
+ln -svf /mnt/storage/workspaces/scanntech/infra-docs/config/postgresql/.psqlrc_nuevo ~/.psqlrc
+gitPullScanntech 
+db.club_analytics
+git coa updates && git push
+ll
+cd ../
+ll
+cd
+cd ~/.private/
+ll
+mkdir bash
+ll
+mc
+ll
+vim ~/.gitconfig 
+ls -lah ~/.gitconfig 
+cat ~/Documents/logbook/docs/git.md 
+git config --global credential.helper store
+git config --global credential.helper 'store --file ~/.private/git/git-credentials'
+vim ~/.gitconfig 
+ll
+vim -p scanntech/*
+vim -p scanntech/* ~/.bashrc 
+git coa updates && git push
+ls
+ll
+vim -p bash/*
+vim -p git/*
+vim -p ssh/*
+cd ssh/
+ll
+cat id_ed25519
+cat id_ed25519.pub 
+mv id_ed25519 laptop-jpompa-id_ed25519
+mv id_ed25519.pub laptop-jpompa-id_ed25519.pub
+ll
+cd ~/.ssh/
+ll
+ln -svf ~/.private/ssh/laptop-jpompa-id_ed25519 id_ed25519
+ln -svf ~/.private/ssh/laptop-jpompa-id_ed25519.pub id_ed25519.pub
+ll
+rm -rf id_rsa id_rsa.pub 
+ll
+cd ~/.private/
+git coa updates
+git push
+ll
+vim scanntech/*
+vim -p *
+vim -p scanntech/*
+cd ~/.dotfiles/
+ll
+mv bash_aliases{,.backup}
+mv bash_profile{,.backup}
+mv bashrc{,.backup}
+ll
+mkdir bash
+mv bash*.backup bash/
+ll
+mv ~/.bash_history ~/.dotfiles/bash/bash_history
+mv ~/.bash_logout ~/.dotfiles/bash/bash_logout
+mv ~/.bash_profile ~/.dotfiles/bash/bash_profile
+mv ~/.bashrc ~/.dotfiles/bash/bashrc
+ll
+cd bash/
+ll
+ln -svf ~/.dotfiles/bash/bash_history ~/.bash_history
+ln -svf ~/.dotfiles/bash/bash_logout ~/.bash_logout
+ln -svf ~/.dotfiles/bash/bash_profile ~/.bash_profile
+ln -svf ~/.dotfiles/bash/bashrc ~/.bashrc
+git coa updates
+git push
+ll ~/.bashrc 
+vim ~/.bashrc 
+ls ~/.private/scanntech/
+vim ~/.bashrc 
+source ~/.private/scanntech/*.sh
+vim ~/.bashrc 
+alias
+bash -x ~/.bashrc 
+
+vim ~/.bashrc 
+db.club_analytics
+cat ~/.bashrc 
+vim ~/.bashrc 
+ls ~/.bashrc.d
+vim ~/.bashrc 
+cd ~/.private/bash/
+ll
+mv functions.sh 00-functions.sh
+mv aliases.sh 00-aliases.sh
+ll
+cd ../scanntech/
+ll
+mv aliases.sh 00-aliases.sh
+vim aliases-db.sh 
+vim 00-aliases.sh 
+pwd
+vim 00-aliases.sh 
+ll
+vim 00-aliases.sh 
+vim 00-* -p
+git coa updates
+git push
+cd ~/.dotfiles/
+cd bash/
+ll
+vim bashrc
+cd ~/.private/bash/
+ll
+mv -vf {,01-}aliases-apt.sh 
+mv -vf {,01-} aliases-dnf.sh
+mv -vf {,01-}aliases-dnf.sh
+ll
+mv 01-aliases-dnf.sh 02-aliases-dnf.sh 
+ll
+vim -p 00-*
+head -n 20 ~/.dotfiles/bash/bash_aliases.backup 
+cd ~/.dotfiles/bash
+ll
+cd ~/.private/scanntech/
+head -n 20 00-functions.sh 
+cd ../bash
+ll
+vim 00-aliases.sh 
+vim 00-functions.sh 
+cd 
+vim ~/.bashrc 
+cd ~/.private/bash/
+ll
+vim ~/.bashrc 
+cd ~/.private/bash/
+ll
+vim 00-*
+cd ../scanntech/
+vim 00-*
+cd ../scanntech/
+vim 00-*
+cd ../bash/
+vim 00-*
+cd ~/.private/bash/
+vim 00-*
+vim -p 00-*
+cd ../scanntech/
+vim -p 00-*

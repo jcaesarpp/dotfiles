@@ -14,16 +14,23 @@ export PATH
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
-# User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-    for rc in ~/.bashrc.d/*; do
-        if [ -f "$rc" ]; then
-            . "$rc"
-        fi
-    done
-fi
-unset rc
+# - - - - - - - - - 8< - - - jcpp - - - 8< - - - - - - - - -
+[[ -d "${HOME}/.private/bash" ]] && {
+    [[ -f "${HOME}/.private/bash/00-aliases.sh" ]] && \
+        . "${HOME}/.private/bash/00-aliases.sh"
+    [[ -f "${HOME}/.private/bash/00-functions.sh" ]] && \
+	. "${HOME}/.private/bash/00-functions.sh"
+}
 
+# - - - - - - - - - 8< - - - scanntech - - - 8< - - - - - - - - -
+[[ -d "${HOME}/.private/scanntech" ]] && {
+    [[ -f "${HOME}/.private/scanntech/00-aliases.sh" ]] && \
+        . "${HOME}/.private/scanntech/00-aliases.sh"
+    [[ -f "${HOME}/.private/scanntech/00-functions.sh" ]] && \
+	. "${HOME}/.private/scanntech/00-functions.sh"
+}
+
+# - - - - - - - - - 8< - - - starship - - - 8< - - - - - - - - -
 export STARSHIP_CACHE=~/.starship/cache
 eval -- "$(/usr/bin/starship init bash --print-full-init)"
 
