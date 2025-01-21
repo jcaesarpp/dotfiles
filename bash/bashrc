@@ -15,22 +15,8 @@ export PATH
 # export SYSTEMD_PAGER=
 
 # - - - - - - - - - 8< - - - jcpp - - - 8< - - - - - - - - -
-[[ -d "${HOME}/.private/bash" ]] && {
-    [[ -f "${HOME}/.private/bash/00-aliases.sh" ]] && \
-        . "${HOME}/.private/bash/00-aliases.sh"
-    [[ -f "${HOME}/.private/bash/00-functions.sh" ]] && \
-	. "${HOME}/.private/bash/00-functions.sh"
-}
+[[ -d ${HOME}/.private/bash ]] && source ${HOME}/.private/bash/*.sh
 
 # - - - - - - - - - 8< - - - scanntech - - - 8< - - - - - - - - -
-[[ -d "${HOME}/.private/scanntech" ]] && {
-    [[ -f "${HOME}/.private/scanntech/00-aliases.sh" ]] && \
-        . "${HOME}/.private/scanntech/00-aliases.sh"
-    [[ -f "${HOME}/.private/scanntech/00-functions.sh" ]] && \
-	. "${HOME}/.private/scanntech/00-functions.sh"
-}
-
-# - - - - - - - - - 8< - - - starship - - - 8< - - - - - - - - -
-export STARSHIP_CACHE=~/.starship/cache
-eval -- "$(/usr/bin/starship init bash --print-full-init)"
+[[ -d ${HOME}/.private/scanntech ]] && source ${HOME}/.private/scanntech/*.sh
 
