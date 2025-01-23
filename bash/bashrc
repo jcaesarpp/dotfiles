@@ -16,15 +16,17 @@ export PATH
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
+# - - - - - - - - - 8< - - - - - - 8< - - - - - - - - -
 shopt -s autocd
 
+# - - - - - - - - - 8< - - - - - - 8< - - - - - - - - -
 export CDPATH="${HOME}:/etc"
 [[ -d /mnt/storage ]] && export CDPATH+=':/mnt/storage'
 
 # - - - - - - - - - 8< - - - jcaesarpp - - - 8< - - - - - - - - -
 [[ -f ${HOME}/.private/bash/bashrc ]] && \
 	source ${HOME}/.private/bash/bashrc
-
+ 
 # - - - - - - - - - 8< - - - Scanntech - - - 8< - - - - - - - - -
 [[ $(hostname -s) == 'laptop-jpompa' ]] && \
 	[[ -d ${HOME}/.private/scanntech ]] && \
