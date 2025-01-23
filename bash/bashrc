@@ -16,6 +16,11 @@ export PATH
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
+shopt -s autocd
+
+export CDPATH="${HOME}:/etc"
+[[ -d /mnt/storage ]] && export CDPATH+=':/mnt/storage'
+
 # - - - - - - - - - 8< - - - jcaesarpp - - - 8< - - - - - - - - -
 [[ -f ${HOME}/.private/bash/bashrc ]] && \
 	source ${HOME}/.private/bash/bashrc
