@@ -9,9 +9,10 @@ fi
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+    export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
-export PATH
+
+[[ -d /home/linuxbrew/.linuxbrew/bin ]] && export PATH+=":/home/linuxbrew/.linuxbrew/bin"
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -26,9 +27,11 @@ export CDPATH="${HOME}:/etc"
 # - - - - - - - - - 8< - - - jcaesarpp - - - 8< - - - - - - - - -
 [[ -f ${HOME}/.private/bash/bashrc ]] && \
 	source ${HOME}/.private/bash/bashrc
- 
+
 # - - - - - - - - - 8< - - - Scanntech - - - 8< - - - - - - - - -
 [[ $(hostname -s) == 'laptop-jpompa' ]] && \
 	[[ -d ${HOME}/.private/scanntech ]] && \
 	source ${HOME}/.private/scanntech/bashrc
+
+export EDITOR=vim
 
