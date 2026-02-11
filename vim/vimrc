@@ -43,7 +43,7 @@ set autoindent
 set smarttab
 
 syntax on
-colorscheme nord
+colorscheme enfocado
 set background=dark
 
 " nerdtree
