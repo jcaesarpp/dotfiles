@@ -1,84 +1,36 @@
-- 1.1.10
+- 1.1.11+dfsg-2
 - _NAME: MX Keys Mini
   _absent: [hi-res-scroll, lowres-scroll-mode, hires-smooth-invert, hires-smooth-resolution, hires-scroll-mode, scroll-ratchet, smart-shift, thumb-scroll-invert,
-    thumb-scroll-mode, onboard_profiles, report_rate, pointer_speed, dpi, speed-change, backlight-timed, reprogrammable-keys, persistent-remappable-keys,
-    crown-smooth, divert-crown, divert-gkeys, m-key-leds, mr-key-led, gesture2-gestures, gesture2-divert, gesture2-params, sidetone, equalizer, adc_power_management]
-  _battery: 4100
+    thumb-scroll-mode, onboard_profiles, report_rate, report_rate_extended, pointer_speed, dpi, speed-change, backlight_level, backlight_duration_hands_out,
+    backlight_duration_hands_in, backlight_duration_powered, backlight-timed, led_control, led_zone_, reprogrammable-keys, persistent-remappable-keys, crown-smooth,
+    divert-crown, divert-gkeys, m-key-leds, mr-key-led, gesture2-gestures, gesture2-divert, gesture2-params, sidetone, equalizer, adc_power_management]
+  _battery: 0x1004
   _modelId: B36900000000
-  _sensitive: {change-host: false, disable-keyboard-keys: false, fn-swap: true, multiplatform: false}
-  _serial: 9C5ABACC
+  _sensitive: {fn-swap: false, multiplatform: false}
   _unitId: 9C5ABACC
-  _wpid: B36900000000
-  backlight: true
   change-host: null
-  disable-keyboard-keys: {1: false, 8: false, 16: false}
-  divert-keys: {226: 0, 227: 0, 229: 0, 231: 0, 232: 0, 233: 0, 259: 0, 264: 0, 266: 0, 279: 0, 284: 0}
+  disable-keyboard-keys: {0x1: false, 0x8: false, 0x10: false}
+  divert-keys: {0xe2: 0x0, 0xe3: 0x0, 0xe5: 0x0, 0xe7: 0x0, 0xe8: 0x0, 0xe9: 0x0, 0x103: 0x0, 0x108: 0x0, 0x10a: 0x0, 0x117: 0x0, 0x11c: 0x0}
   fn-swap: false
-  multiplatform: 3
-- _NAME: Wireless Mouse M185 new
-  _modelId: '000000000000'
-  _sensitive: {hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore}
-  _serial: '00000000'
-  _unitId: '00000000'
-  _wpid: '4054'
-  divert-keys: {82: 0}
-  lowres-scroll-mode: false
-  pointer_speed: 256
-  reprogrammable-keys: {80: 80, 81: 81, 82: 82}
-- _NAME: MX Anywhere 3
-  _absent: [hi-res-scroll, lowres-scroll-mode, scroll-ratchet, thumb-scroll-invert, thumb-scroll-mode, onboard_profiles, report_rate, pointer_speed, speed-change,
-    backlight, backlight-timed, fn-swap, persistent-remappable-keys, disable-keyboard-keys, crown-smooth, divert-crown, divert-gkeys, m-key-leds, mr-key-led,
-    multiplatform, gesture2-gestures, gesture2-divert, gesture2-params, sidetone, equalizer, adc_power_management]
-  _battery: 4100
-  _modelId: B02540900000
-  _sensitive: {divert-keys: false, dpi-sliding: ignore, hires-scroll-mode: false, hires-smooth-invert: false, hires-smooth-resolution: false, mouse-gestures: false,
-    smart-shift: false}
-  _unitId: 73B570ED
+  multiplatform: 0x0
+- _NAME: MX Master 3S
+  _absent: [hi-res-scroll, lowres-scroll-mode, onboard_profiles, report_rate, report_rate_extended, pointer_speed, dpi, speed-change, backlight, backlight_level,
+    backlight_duration_hands_out, backlight_duration_hands_in, backlight_duration_powered, backlight-timed, led_control, led_zone_, fn-swap, persistent-remappable-keys,
+    disable-keyboard-keys, crown-smooth, divert-crown, divert-gkeys, m-key-leds, mr-key-led, multiplatform, gesture2-gestures, gesture2-divert, gesture2-params,
+    sidetone, equalizer, adc_power_management]
+  _battery: 0x1004
+  _modelId: B03400000000
+  _sensitive: {change-host: false, divert-keys: false, dpi: false, hires-scroll-mode: true, hires-smooth-invert: false, hires-smooth-resolution: true, reprogrammable-keys: false,
+    scroll-ratchet: false, smart-shift: false, thumb-scroll-invert: false, thumb-scroll-mode: true}
+  _unitId: F2735CE5
   change-host: null
-  divert-keys: {82: 0, 83: 0, 86: 0, 196: 2}
-  dpi: 1000
+  divert-keys: {0x52: 0x0, 0x53: 0x0, 0x56: 0x0, 0xc3: 0x1, 0xc4: 0x0}
+  dpi: 0x3e8
   hires-scroll-mode: false
   hires-smooth-invert: false
   hires-smooth-resolution: true
-  reprogrammable-keys: {80: 80, 81: 81, 82: 82, 83: 83, 86: 86, 196: 196}
-  smart-shift: 25
-- _NAME: MX Keys Mini
-  _sensitive: {hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore}
-  _unitId: 9C5ABACC
-  backlight: true
-  change-host: null
-  disable-keyboard-keys: {1: false, 8: false, 16: false}
-  divert-keys: {226: 0, 227: 0, 229: 0, 231: 0, 232: 0, 233: 0, 259: 0, 264: 0, 266: 0, 279: 0, 284: 0}
-  fn-swap: false
-  multiplatform: 3
-- _NAME: MX Anywhere 3
-  _modelId: B02540900000
-  _sensitive: {hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore}
-  _unitId: D07AC3F5
-  change-host: null
-  divert-keys: {82: 0, 83: 0, 86: 0, 196: 0}
-  dpi: 1000
-  hires-scroll-mode: false
-  hires-smooth-invert: false
-  hires-smooth-resolution: false
-  reprogrammable-keys: {80: 80, 81: 81, 82: 82, 83: 83, 86: 86, 196: 196}
-  smart-shift: 10
-- _NAME: Wireless Keyboard MK270
-  _modelId: Wireless Keyboard MK270
-  _sensitive: {hires-scroll-mode: ignore, hires-smooth-invert: ignore, hires-smooth-resolution: ignore}
-  _serial: '00000000'
-  _unitId: '00000000'
-  _wpid: '4023'
-- _NAME: G703 LIGHTSPEED Wireless Gaming Mouse w/ HERO
-  _absent: [hi-res-scroll, lowres-scroll-mode, hires-smooth-invert, hires-smooth-resolution, hires-scroll-mode, scroll-ratchet, smart-shift, thumb-scroll-invert,
-    thumb-scroll-mode, pointer_speed, speed-change, backlight, backlight-timed, fn-swap, reprogrammable-keys, persistent-remappable-keys, divert-keys, disable-keyboard-keys,
-    crown-smooth, divert-crown, divert-gkeys, m-key-leds, mr-key-led, multiplatform, change-host, gesture2-gestures, gesture2-divert, gesture2-params, sidetone,
-    equalizer, adc_power_management]
-  _battery: 4097
-  _modelId: 4086C0900000
-  _serial: 14293B9E
-  _unitId: 14293B9E
-  _wpid: '4086'
-  dpi: 800
-  onboard_profiles: 1
-  report_rate: 1
+  reprogrammable-keys: {0x50: 0x50, 0x51: 0x51, 0x52: 0x52, 0x53: 0x53, 0x56: 0x56, 0xc3: 0xc3, 0xc4: 0xc4}
+  scroll-ratchet: 0x2
+  smart-shift: 0xa
+  thumb-scroll-invert: false
+  thumb-scroll-mode: false

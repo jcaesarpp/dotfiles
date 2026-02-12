@@ -1,4 +1,0 @@
--c
---audio-quality 0
---embed-thumbnail
--o '%(playlist_index)s %(title)s.%(ext)s'
