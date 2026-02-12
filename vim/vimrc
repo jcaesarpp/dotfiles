@@ -7,11 +7,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'preservim/nerdtree'
+    Plug 'vim-scripts/SearchComplete'
+
+    " tpope plugins
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tribela/vim-transparent'
-    Plug 'vim-scripts/SearchComplete'
+
+    " color scheme
     Plug 'wuelnerdotexe/vim-enfocado'
 call plug#end()
 
