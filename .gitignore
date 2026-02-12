@@ -2,6 +2,7 @@ config/alacritty/themes
 vim/autoload
 vim/plugged
 vim/swp
+vim/undo
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim
