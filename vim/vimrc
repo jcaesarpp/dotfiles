@@ -89,8 +89,19 @@ augroup END
 
 set t_Co=256
 
+" remember file location
 autocmd BufReadPost *
   \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
   \ |   exe "normal! g`\""
   \ | endif
+
+" all swap files in one place
+let s:swapdir = expand('~/.vim/swp')
+if !isdirectory(s:swapdir)
+    call mkdir(s:swapdir, 'p', 0700)
+endif
+set directory=$HOME/.vim/swp//
+
+set undofile
+set undodir=$HOME/.vim/undo//
 
