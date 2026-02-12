@@ -1,4 +1,5 @@
 config/alacritty/themes
+tmux/plugins
 vim/autoload
 vim/plugged
 vim/swp
