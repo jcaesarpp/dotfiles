@@ -18,48 +18,52 @@ call plug#end()
 " - - - - - - - - - 8< - - - - - - - - - 8< - - - - - - - - -
 
 " gitgutter
-nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
-let g:gitgutter_terminal_reports_focus=0
+nmap ]h <Plug>(GitGutterNextHunk)
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_modified_removed = '<'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '^'
-let g:gitgutter_sign_modified_removed = '<'
+let g:gitgutter_terminal_reports_focus=0
 
 " itspriddle/vim-shellcheck
 let g:shellcheck_disable_mappings = 1
 
-"" junegunn/fzf.vim
-"let g:fzf_buffers_jump = 1
-"let g:fzf_command_prefix = 'Fzf'
-"let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-"let g:fzf_preview_window = ['right:60%']
+" junegunn/fzf.vim
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_vim = {}
+let g:fzf_vim.buffers_jump = 1
+let g:fzf_vim.commands_expect = 'alt-enter,ctrl-x'
+let g:fzf_vim.commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+let g:fzf_vim.grep_multi_line = 2
+let g:fzf_vim.preview_window = ['hidden,right,50%,<70(up,40%)', 'ctrl-/']
+let g:fzf_vim.tags_command = 'ctags -R'
 
 " preservim/nerdtree
-nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-let g:NERDTreeQuitOnOpen = 1
+nnoremap <C-t> :NERDTreeToggle<CR>
 let g:NERDTreeFileLines = 1
+let g:NERDTreeQuitOnOpen = 1
 " - - - - - - - - - 8< - - - - - - - - - 8< - - - - - - - - -
 
-set updatetime=1000
-set nu rnu
+set cursorline
 set hls
 set ignorecase
-set cursorline
+set nu rnu
+set updatetime=1000
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
 set autoindent
+set expandtab
+set shiftwidth=4
 set smarttab
+set softtabstop=4
+set tabstop=4
 
-filetype plugin indent on
-syntax on
 colorscheme enfocado
+filetype plugin indent on
 set background=dark
+syntax on
 
 autocmd BufWritePre *.* :%s/\s\+$//e
 
