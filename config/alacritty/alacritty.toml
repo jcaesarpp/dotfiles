@@ -10,7 +10,7 @@ italic = { family = "MesloLGS NF", style = "Italic" }
 bold_italic = { family = "MesloLGS NF", style = "Bold Italic" }
 
 [shell]
-args = ["-c", "cd ~/Downloads; tmux new-session -As $USER"]
+args = ["-c", "tmux -f ~/.tmux/tmux.conf new-session -As ${USER} -c ~/Downloads"]
 program = "/bin/zsh"
 
 [window]

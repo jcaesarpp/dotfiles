@@ -136,3 +136,5 @@ zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
 zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
 zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
+alias update-all='aguu && omz update && vim +PlugUpdate +PlugUpgrade +PlugClean +qall'
+
