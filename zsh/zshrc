@@ -120,3 +120,14 @@ wiki() {
   curl -s "https://es.wikipedia.org/api/rest_v1/page/summary/${1}" | jq -r '.extract'
 }
 
+autoload -Uz compinit
+compinit
+setopt COMPLETE_IN_WORD
+setopt GLOB_COMPLETE
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select
+
+setopt autocd
+export CDPATH=.:~
+setopt cdable_vars
+
