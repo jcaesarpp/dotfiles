@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-scripts/SearchComplete'
     Plug 'airblade/vim-gitgutter'
     Plug 'itspriddle/vim-shellcheck'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'preservim/nerdtree'
     Plug 'tribela/vim-transparent'
@@ -37,7 +38,7 @@ let g:fzf_vim.buffers_jump = 1
 let g:fzf_vim.commands_expect = 'alt-enter,ctrl-x'
 let g:fzf_vim.commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 let g:fzf_vim.grep_multi_line = 2
-let g:fzf_vim.preview_window = ['hidden,right,50%,<70(up,40%)', 'ctrl-/']
+let g:fzf_vim.preview_window = ['right,50%,<70(up,40%)']
 let g:fzf_vim.tags_command = 'ctags -R'
 
 " preservim/nerdtree
@@ -87,4 +88,9 @@ augroup END
 "endif
 
 set t_Co=256
+
+autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | endif
 
