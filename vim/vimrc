@@ -1,35 +1,49 @@
+" https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
-    Plug 'itspriddle/vim-shellcheck'
-	Plug 'vim-scripts/SearchComplete'
-	Plug 'scrooloose/nerdtree'
 	Plug 'bronson/vim-toggle-wrap'
-    "Plug 'powerline/powerline'
+	Plug 'vim-scripts/SearchComplete'
     Plug 'airblade/vim-gitgutter'
-    "Plug 'plasticboy/vim-markdown'
-    "Plug 'hallison/vim-markdown'
-    "Plug 'freitass/todo.txt-vim'
-    Plug 'vim-latex/vim-latex'
-    Plug 'mapkts/enwise'
+    Plug 'itspriddle/vim-shellcheck'
     Plug 'junegunn/fzf.vim'
+    Plug 'preservim/nerdtree'
     Plug 'tribela/vim-transparent'
 
-    " color themes
-	Plug 'benburrill/potato-colors' 
-	Plug 'lithammer/vim-eighties'
-	Plug 'aonemd/kuroi.vim'
-    Plug 'wuelnerdotexe/vim-enfocado'
-    Plug 'blueshirts/darcula'
-    Plug 'arcticicestudio/nord-vim'
-    Plug 'jnurmine/Zenburn'
-	
 	" tpope
 	Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-speeddating'
-    Plug 'tpope/vim-unimpaired'
-    Plug 'tpope/vim-fugitive'
+    
+    " color themes
+    Plug 'wuelnerdotexe/vim-enfocado'
 call plug#end()
+" - - - - - - - - - 8< - - - - - - - - - 8< - - - - - - - - -
 
+" gitgutter
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+let g:gitgutter_terminal_reports_focus=0
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '<'
+
+" itspriddle/vim-shellcheck
+let g:shellcheck_disable_mappings = 1
+
+"" junegunn/fzf.vim
+"let g:fzf_buffers_jump = 1
+"let g:fzf_command_prefix = 'Fzf'
+"let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+"let g:fzf_preview_window = ['right:60%']
+
+" preservim/nerdtree
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeFileLines = 1
+" - - - - - - - - - 8< - - - - - - - - - 8< - - - - - - - - -
+
+set updatetime=1000
 set nu rnu
 set hls
 set ignorecase
@@ -42,31 +56,11 @@ set expandtab
 set autoindent
 set smarttab
 
+filetype plugin indent on
 syntax on
 colorscheme enfocado
 set background=dark
 
-" nerdtree
-map <F9> :NERDTreeToggle<CR>
-
-" open vimagit pane
-nnoremap <leader>gs :Magit<CR>
-nnoremap <leader>gP :! git push<CR>
-
-" gitgutter
-let g:gitgutter_terminal_reports_focus=0
-set updatetime=1000
-
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '>'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '^'
-let g:gitgutter_sign_modified_removed = '<'
-
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
-
-" remove all trailing spaces on save
 autocmd BufWritePre *.* :%s/\s\+$//e
 
 augroup numbertoggle
@@ -75,27 +69,18 @@ augroup numbertoggle
 	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
-if has('gui_running')
-  nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
-  nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
-  
-  set guioptions-=m  "remove menu bar
-  set guioptions-=T  "remove toolbar
+"if has('gui_running')
+"  nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+"  nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
+"  
+"  set guioptions-=m  "remove menu bar
+"  set guioptions-=T  "remove toolbar
+"
+"  set guioptions-=r  "remove right-hand scroll bar
+"  set guioptions-=L  "remove left-hand scroll bar
+"  
+"  "set guifont=Monospace\ 11
+"endif
 
-  set guioptions-=r  "remove right-hand scroll bar
-  set guioptions-=L  "remove left-hand scroll bar
-  
-  "set guifont=Monospace\ 11
-endif
-
-" fzf
-let g:fzf_command_prefix = 'Fzf'
-let g:fzf_preview_window = ['right:60%']
-let g:fzf_buffers_jump = 1
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
-let g:enwise_enable_globally = 1
-
-"set termguicolors
 set t_Co=256
 
