@@ -4,9 +4,8 @@
 
 [core]
 	excludesfile = ~/.dotfiles/gitignore
-	hooksPath = ~/.dotfiles/git/hooks
 	compression = 0
-	packedGitLimit = 512m 
+	packedGitLimit = 512m
 	packedGitWindowSize = 512m
 
 [credential]
@@ -21,7 +20,7 @@
 [init]
 	defaultBranch = main
 
-[pack] 
-	deltaCacheSize = 2047m 
-	packSizeLimit = 2047m 
+[pack]
+	deltaCacheSize = 2047m
+	packSizeLimit = 2047m
 	windowMemory = 2047m

@@ -1,111 +1,100 @@
-" https://github.com/junegunn/vim-plug
+" - - - - - - - - - 8< - - - PLUGINS - - - 8< - - - - - - - - -
+
 call plug#begin('~/.vim/plugged')
-	Plug 'bronson/vim-toggle-wrap'
-	Plug 'vim-scripts/SearchComplete'
     Plug 'airblade/vim-gitgutter'
+    Plug 'bronson/vim-toggle-wrap'
     Plug 'itspriddle/vim-shellcheck'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'preservim/nerdtree'
-    Plug 'tribela/vim-transparent'
-
-	" tpope
-	Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-speeddating'
-    
-    " color themes
+    Plug 'tpope/vim-surround'
+    Plug 'tribela/vim-transparent'
+    Plug 'vim-scripts/SearchComplete'
     Plug 'wuelnerdotexe/vim-enfocado'
 call plug#end()
-" - - - - - - - - - 8< - - - - - - - - - 8< - - - - - - - - -
 
-" gitgutter
-nmap [h <Plug>(GitGutterPrevHunk)
-nmap ]h <Plug>(GitGutterNextHunk)
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '>'
-let g:gitgutter_sign_modified_removed = '<'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '^'
-let g:gitgutter_terminal_reports_focus=0
-
-" itspriddle/vim-shellcheck
-let g:shellcheck_disable_mappings = 1
-
-" junegunn/fzf.vim
-let g:fzf_command_prefix = 'Fzf'
-let g:fzf_vim = {}
-let g:fzf_vim.buffers_jump = 1
-let g:fzf_vim.commands_expect = 'alt-enter,ctrl-x'
-let g:fzf_vim.commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-let g:fzf_vim.grep_multi_line = 2
-let g:fzf_vim.preview_window = ['right,50%,<70(up,40%)']
-let g:fzf_vim.tags_command = 'ctags -R'
-
-" preservim/nerdtree
-nnoremap <C-f> :NERDTreeFind<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-let g:NERDTreeFileLines = 1
-let g:NERDTreeQuitOnOpen = 1
-" - - - - - - - - - 8< - - - - - - - - - 8< - - - - - - - - -
-
-set ignorecase
-set smartcase
-set incsearch
-set hlsearch
-
-set cursorline
-set nu rnu
-set updatetime=1000
-
-set autoindent
-set expandtab
-set shiftwidth=4
-set smarttab
-set softtabstop=4
-set tabstop=4
+" - - - - - - - - - 8< - - - UI & GENERAL SETTINGS - - - 8< - - - - - - - - -
 
 colorscheme enfocado
 filetype plugin indent on
 set background=dark
-syntax on
-
-autocmd BufWritePre *.* :%s/\s\+$//e
-
-augroup numbertoggle
-	autocmd!
-	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
-"if has('gui_running')
-"  nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
-"  nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
-"  
-"  set guioptions-=m  "remove menu bar
-"  set guioptions-=T  "remove toolbar
-"
-"  set guioptions-=r  "remove right-hand scroll bar
-"  set guioptions-=L  "remove left-hand scroll bar
-"  
-"  "set guifont=Monospace\ 11
-"endif
-
+set clipboard=unnamedplus
+set cursorline
+set nu rnu
 set t_Co=256
+set timeoutlen=500
+set ttimeoutlen=10
+set updatetime=300
 
-" remember file location
-autocmd BufReadPost *
-  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif
+" Search behavior
+set ignorecase smartcase incsearch hlsearch
 
-" all swap files in one place
+" Tabulation & Indentation
+set autoindent expandtab shiftwidth=4 smarttab softtabstop=4 tabstop=4
+
+" - - - - - - - - - 8< - - - FILE & PERSISTENCE - - - 8< - - - - - - - - -
+
+" Centralized swap files
 let s:swapdir = expand('~/.vim/swp')
 if !isdirectory(s:swapdir) | call mkdir(s:swapdir, 'p', 0700) | endif
 set directory=$HOME/.vim/swp//
 
-" undo management
+" Centralized undo history
 let s:undodir = expand('~/.vim/undo')
 if !isdirectory(s:undodir) | call mkdir(s:undodir, 'p', 0700) | endif
 set undofile
 set undodir=$HOME/.vim/undo//
 
-set clipboard=unnamedplus
+" Restore cursor position
+autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ | exe "normal! g`\"" | endif
+
+" Strip trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" - - - - - - - - - 8< - - - PLUGIN CONFIG & MAPPINGS - - - 8< - - - - - - - - -
+
+" FZF
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = ['right,50%,<70(up,40%)']
+
+" Search files in current directory
+nnoremap <C-p> :FzfFiles<CR>
+" Search open buffers
+nnoremap <leader>b :FzfBuffers<CR>
+" Search lines in open buffers (fuzzily)
+nnoremap <leader>l :FzfLines<CR>
+" Search tags (useful for jumping to headings)
+nnoremap <leader>t :FzfBTags<CR>""" " FZF
+
+" NERDTree
+let g:NERDTreeQuitOnOpen = 1
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" GitGutter
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_removed = '-'
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap ]h <Plug>(GitGutterNextHunk)
+
+" --- GIT INTEGRATION ---
+" Quick commit for current file using its name
+nnoremap <leader>ga :G commit -am "%:t"<CR>
+" Open interactive Git status
+nnoremap <leader>gs :G<CR>
+" Quick push
+nnoremap <leader>gp :G push<CR>
+
+" Dynamic relative numbering
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
