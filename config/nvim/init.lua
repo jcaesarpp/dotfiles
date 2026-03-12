@@ -1,16 +1,62 @@
+
 local opt = vim.opt
 
-opt.number = true          -- Muestra números de línea
-opt.relativenumber = true  -- Números relativos (clave para moverte rápido)
-opt.mouse = 'a'            -- Permite usar el mouse
-opt.ignorecase = true      -- Ignorar mayúsculas al buscar
-opt.smartcase = true       -- No ignorar si hay una mayúscula en la búsqueda
-opt.termguicolors = true   -- Colores reales en la terminal (ideal para Alacritty)
-opt.tabstop = 4            -- Tamaño de tabulación
+opt.number = true
+opt.relativenumber = true
+opt.mouse = ''
+opt.ignorecase = true
+opt.smartcase = true
+opt.termguicolors = true
+opt.tabstop = 4
 opt.shiftwidth = 4
-opt.expandtab = true       -- Convertir tabs en espacios
-opt.clipboard = "unnamedplus" -- Sincronizar con el portapapeles del sistema
+opt.expandtab = true
+opt.clipboard = "unnamedplus"
 
--- Tecla líder (espacio es la más cómoda en Neovim)
---vim.g.mapleader = " "
+vim.g.mapleader = " "
+vim.keymap.set('n', '<leader>w', ':set wrap!<CR>')
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+
+  "tpope/vim-surround",
+  "tpope/vim-fugitive",
+  "tpope/vim-speeddating",
+  "tribela/vim-transparent",
+  "wuelnerdotexe/vim-enfocado",
+  
+  --"nvim-tree/nvim-tree.lua",
+  "nvim-telescope/telescope.nvim",
+  "nvim-lua/plenary.nvim",
+
+  {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  },
+})
+
+require("mason").setup()
+require("mason-lspconfig").setup()
+
+-- Abrir/Cerrar el explorador de archivos con Espacio + e
+--vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { silent = true })
+
+-- Buscador de archivos con Espacio + f (Files)
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>f', builtin.find_files, {})
+
+-- Buscar texto dentro de los archivos con Espacio + g (Grep)
+-- (Requiere que tengas instalado 'ripgrep' en Ubuntu)
+vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
+
+vim.cmd.colorscheme "catppuccin"
 
