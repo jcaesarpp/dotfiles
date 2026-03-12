@@ -46,6 +46,14 @@ require("lazy").setup({
 
 require("mason").setup()
 require("mason-lspconfig").setup()
+--require('lspconfig').bashls.setup({})
+--
+---- Ver errores de Shellcheck (Diagnostics) con Espacio + d
+--vim.keymap.set('n', '<leader>d', vim.diagnostic.setqflist, { desc = "Ver errores de Shellcheck" })
+--
+---- Saltar al siguiente error con ]d y al anterior con [d
+--vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+--vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 
 -- Abrir/Cerrar el explorador de archivos con Espacio + e
 --vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { silent = true })
