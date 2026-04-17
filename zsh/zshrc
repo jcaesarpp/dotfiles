@@ -117,6 +117,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:/home/jpompa/.local/bin"
 export PATH="$PATH:/home/jpompa/go/bin"
 export PATH="$PATH:/home/jpompa/Workspaces/scanntech/sys-utils/installation"
+export PATH="$PATH:/home/jpompa/Workspaces/jcaesarpp/bash"
 
 wiki() {
   curl -s "https://es.wikipedia.org/api/rest_v1/page/summary/${1}" | jq -r '.extract'
