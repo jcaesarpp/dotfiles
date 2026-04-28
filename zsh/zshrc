@@ -145,3 +145,15 @@ function btBattery() {
     bluetoothctl -- info "$(bluetoothctl -- devices Paired | grep "$1" | cut -d ' ' -f 2)" | grep 'Battery Percentage:'
 }
 
+function mapDIMM() {
+    local CPU_ID=$(echo "$1" | cut -d'#' -f2 | cut -d'_' -f1)
+    local CHAN_ID=$(echo "$1" | cut -d'#' -f3 | cut -d'_' -f1)
+    local DIMM_ID=$(echo "$1" | cut -d'#' -f4)
+
+    local P_NUM=$((CPU_ID + 1))
+    local DIMM_NUM=$((DIMM_ID + 1))
+    local CHAN_LETTER=$(printf "\\$(printf '%03o' $((CHAN_ID + 65)))")
+
+    echo "P${P_NUM}-DIMM${CHAN_LETTER}${DIMM_NUM}"
+}
+
