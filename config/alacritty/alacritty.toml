@@ -19,7 +19,7 @@ dynamic_padding = false
 dynamic_title = true
 opacity = 0.94
 startup_mode = "Maximized"
-padding = { x = 0, y = 0 }
+padding = { x = 10, y = 0 }
 title = "alacritty"
 
 [[keyboard.bindings]]
