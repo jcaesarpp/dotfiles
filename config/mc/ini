@@ -87,7 +87,7 @@ skin=modarin256
 
 [Layout]
 output_lines=0
-left_panel_size=80
+left_panel_size=79
 top_panel_size=0
 message_visible=false
 keybar_visible=true
@@ -140,6 +140,6 @@ simple_swap=false
 
 [Panelize]
 Find rejects after patching=find . -name \\*.rej -print
-Find SUID and SGID programs=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
-Modified git files=git ls-files --modified
 Find *.orig after patching=find . -name \\*.orig -print
+Modified git files=git ls-files --modified
+Find SUID and SGID programs=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
