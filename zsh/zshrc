@@ -140,6 +140,7 @@ zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
 zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
 alias update-all='aguu && sudo snap refresh && omz update && vim +PlugUpdate +PlugUpgrade +PlugClean +qall && nvim --headless "+Lazy! sync" "+MasonUpdate" +qa'
+alias cops='cd ~/Workspaces/scanntech/claude/ops && claude --model sonnet --continue'
 
 function btBattery() {
     bluetoothctl -- info "$(bluetoothctl -- devices Paired | grep "$1" | cut -d ' ' -f 2)" | grep 'Battery Percentage:'
