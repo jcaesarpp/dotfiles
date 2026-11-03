@@ -24,3 +24,5 @@
 	deltaCacheSize = 2047m
 	packSizeLimit = 2047m
 	windowMemory = 2047m
+[claude]
+	nominal-user = julio.pompa
